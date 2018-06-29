@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="dsAcctRpt" targetNamespace="http://tempuri.org/dsAcctRpt.xsd" elementFormDefault="qualified"
+	attributeFormDefault="qualified" xmlns="http://tempuri.org/dsAcctRpt.xsd" xmlns:mstns="http://tempuri.org/dsAcctRpt.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="dsAcctRpt" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="INVICT">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="refnum" type="xs:decimal" />
+							<xs:element name="invnum" type="xs:decimal" />
+							<xs:element name="cuscde" type="xs:string" />
+							<xs:element name="cusnam" type="xs:string" minOccurs="0" />
+							<xs:element name="invdttm" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="vslnam" type="xs:string" minOccurs="0" />
+							<xs:element name="regnum" type="xs:string" minOccurs="0" />
+							<xs:element name="invremark" type="xs:string" minOccurs="0" />
+							<xs:element name="invamt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="invvat" type="xs:decimal" minOccurs="0" />
+							<xs:element name="invtax" type="xs:decimal" minOccurs="0" />
+							<xs:element name="totalpay" type="xs:decimal" minOccurs="0" />
+							<xs:element name="gtycde" type="xs:string" />
+							<xs:element name="status" type="xs:string" minOccurs="0" />
+							<xs:element name="rectag" type="xs:string" minOccurs="0" />
+							<xs:element name="userid" type="xs:string" minOccurs="0" />
+							<xs:element name="updcde" type="xs:string" minOccurs="0" />
+							<xs:element name="cfscy" type="xs:string" minOccurs="0" />
+							<xs:element name="effdte" type="xs:string" minOccurs="0" />
+							<xs:element name="noncnt" type="xs:string" minOccurs="0" />
+							<xs:element name="arrival" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="voynum" type="xs:string" minOccurs="0" />
+							<xs:element name="Contested" type="xs:string" />
+							<xs:element name="term" type="xs:int" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="INVCYB">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="refnum" type="xs:decimal" />
+							<xs:element name="itmnum" type="xs:decimal" />
+							<xs:element name="rtecde" type="xs:string" minOccurs="0" />
+							<xs:element name="cntsze" type="xs:string" minOccurs="0" />
+							<xs:element name="rtedsc" type="xs:string" minOccurs="0" />
+							<xs:element name="qty" type="xs:decimal" minOccurs="0" />
+							<xs:element name="dyshrs" type="xs:decimal" minOccurs="0" />
+							<xs:element name="vatcde" type="xs:string" minOccurs="0" />
+							<xs:element name="invamt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="invtax" type="xs:decimal" minOccurs="0" />
+							<xs:element name="invvat" type="xs:decimal" minOccurs="0" />
+							<xs:element name="sysdttm" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="status" type="xs:string" minOccurs="0" />
+							<xs:element name="rectag" type="xs:string" minOccurs="0" />
+							<xs:element name="userid" type="xs:string" minOccurs="0" />
+							<xs:element name="updcde" type="xs:string" minOccurs="0" />
+							<xs:element name="discnt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="invremark" type="xs:string" minOccurs="0" />
+							<xs:element name="cargo" type="xs:string" minOccurs="0" />
+							<xs:element name="CompanyCode" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="INVPAYDTL">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ORNUM" type="xs:decimal" />
+							<xs:element name="INVNUM" type="xs:decimal" />
+							<xs:element name="INVAmt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="PAYAmt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="PAYDate" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="remarks" type="xs:string" minOccurs="0" />
+							<xs:element name="RBALANCE" type="xs:decimal" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CYRate">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="cyr_rtecde" type="xs:string" />
+							<xs:element name="cyr_cntsze" type="xs:string" />
+							<xs:element name="cyr_rtetyp" type="xs:string" minOccurs="0" />
+							<xs:element name="cyr_rtedsc" type="xs:string" minOccurs="0" />
+							<xs:element name="cyr_rteamt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="cyr_uomcde" type="xs:string" minOccurs="0" />
+							<xs:element name="cyr_acccde" type="xs:string" minOccurs="0" />
+							<xs:element name="cyr_updcde" type="xs:string" minOccurs="0" />
+							<xs:element name="cyr_userid" type="xs:string" minOccurs="0" />
+							<xs:element name="cyr_sysdte" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="cyr_biltyp" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Sales">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Invdttm" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="invnum" type="xs:decimal" minOccurs="0" />
+							<xs:element name="cusnam" type="xs:string" minOccurs="0" />
+							<xs:element name="invamt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="VC" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CEX" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CIM" type="xs:decimal" minOccurs="0" />
+							<xs:element name="SS" type="xs:decimal" minOccurs="0" />
+							<xs:element name="Others" type="xs:decimal" minOccurs="0" />
+							<xs:element name="PayDate" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="CompanyCode" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Cash">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Pddte" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="DocNo" type="xs:string" minOccurs="0" />
+							<xs:element name="ORNo" type="xs:string" minOccurs="0" />
+							<xs:element name="ChkNo" type="xs:string" minOccurs="0" />
+							<xs:element name="Payor" type="xs:string" minOccurs="0" />
+							<xs:element name="Amt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="ImpAmt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="ExpAmt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="McAmt" type="xs:decimal" minOccurs="0" />
+							<xs:element name="SS" type="xs:decimal" minOccurs="0" />
+							<xs:element name="AR" type="xs:decimal" minOccurs="0" />
+							<xs:element name="SV" type="xs:decimal" minOccurs="0" />
+							<xs:element name="CompanyCode" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="dsAcctRptKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:INVICT" />
+			<xs:field xpath="mstns:refnum" />
+		</xs:unique>
+		<xs:unique name="dsAcctRptKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:INVCYB" />
+			<xs:field xpath="mstns:refnum" />
+			<xs:field xpath="mstns:itmnum" />
+		</xs:unique>
+		<xs:unique name="dsAcctRptKey3" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:INVPAYDTL" />
+			<xs:field xpath="mstns:ORNUM" />
+			<xs:field xpath="mstns:INVNUM" />
+		</xs:unique>
+		<xs:key name="dsAcctRptKey4">
+			<xs:selector xpath=".//mstns:INVCYB" />
+			<xs:field xpath="mstns:rtecde" />
+		</xs:key>
+		<xs:keyref name="INVCYBCYRate" refer="dsAcctRptKey4">
+			<xs:selector xpath=".//mstns:CYRate" />
+			<xs:field xpath="mstns:cyr_rtecde" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>
