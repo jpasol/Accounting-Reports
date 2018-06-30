@@ -325,6 +325,7 @@ Partial Public Class dsAcctRpt
         Me.DataSetName = "dsAcctRpt"
         Me.Prefix = ""
         Me.Namespace = "http://tempuri.org/dsAcctRpt.xsd"
+        Me.Locale = New Global.System.Globalization.CultureInfo("en-US")
         Me.EnforceConstraints = true
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
         Me.tableINVICT = New INVICTDataTable()
@@ -2365,6 +2366,10 @@ Partial Public Class dsAcctRpt
         
         Private columnCompanyCode As Global.System.Data.DataColumn
         
+        Private columnST As Global.System.Data.DataColumn
+        
+        Private columnMC As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -2489,6 +2494,22 @@ Partial Public Class dsAcctRpt
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property STColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnST
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2525,9 +2546,9 @@ Partial Public Class dsAcctRpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddSalesRow(ByVal Invdttm As Date, ByVal invnum As Decimal, ByVal cusnam As String, ByVal invamt As Decimal, ByVal VC As Decimal, ByVal CEX As Decimal, ByVal CIM As Decimal, ByVal SS As Decimal, ByVal Others As Decimal, ByVal PayDate As Date, ByVal CompanyCode As String) As SalesRow
+        Public Overloads Function AddSalesRow(ByVal Invdttm As Date, ByVal invnum As Decimal, ByVal cusnam As String, ByVal invamt As Decimal, ByVal VC As Decimal, ByVal CEX As Decimal, ByVal CIM As Decimal, ByVal SS As Decimal, ByVal Others As Decimal, ByVal PayDate As Date, ByVal CompanyCode As String, ByVal ST As Decimal, ByVal MC As Decimal) As SalesRow
             Dim rowSalesRow As SalesRow = CType(Me.NewRow,SalesRow)
-            Dim columnValuesArray() As Object = New Object() {Invdttm, invnum, cusnam, invamt, VC, CEX, CIM, SS, Others, PayDate, CompanyCode}
+            Dim columnValuesArray() As Object = New Object() {Invdttm, invnum, cusnam, invamt, VC, CEX, CIM, SS, Others, PayDate, CompanyCode, ST, MC}
             rowSalesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSalesRow)
             Return rowSalesRow
@@ -2567,6 +2588,8 @@ Partial Public Class dsAcctRpt
             Me.columnOthers = MyBase.Columns("Others")
             Me.columnPayDate = MyBase.Columns("PayDate")
             Me.columnCompanyCode = MyBase.Columns("CompanyCode")
+            Me.columnST = MyBase.Columns("ST")
+            Me.columnMC = MyBase.Columns("MC")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2594,6 +2617,10 @@ Partial Public Class dsAcctRpt
             MyBase.Columns.Add(Me.columnPayDate)
             Me.columnCompanyCode = New Global.System.Data.DataColumn("CompanyCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCompanyCode)
+            Me.columnST = New Global.System.Data.DataColumn("ST", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnST)
+            Me.columnMC = New Global.System.Data.DataColumn("MC", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMC)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2758,6 +2785,10 @@ Partial Public Class dsAcctRpt
         
         Private columnCompanyCode As Global.System.Data.DataColumn
         
+        Private columnST As Global.System.Data.DataColumn
+        
+        Private columnOthAmt As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -2898,6 +2929,22 @@ Partial Public Class dsAcctRpt
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property STColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnST
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OthAmtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOthAmt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2934,9 +2981,9 @@ Partial Public Class dsAcctRpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddCashRow(ByVal Pddte As Date, ByVal DocNo As String, ByVal ORNo As String, ByVal ChkNo As String, ByVal Payor As String, ByVal Amt As Decimal, ByVal ImpAmt As Decimal, ByVal ExpAmt As Decimal, ByVal McAmt As Decimal, ByVal SS As Decimal, ByVal AR As Decimal, ByVal SV As Decimal, ByVal CompanyCode As String) As CashRow
+        Public Overloads Function AddCashRow(ByVal Pddte As Date, ByVal DocNo As String, ByVal ORNo As String, ByVal ChkNo As String, ByVal Payor As String, ByVal Amt As Decimal, ByVal ImpAmt As Decimal, ByVal ExpAmt As Decimal, ByVal McAmt As Decimal, ByVal SS As Decimal, ByVal AR As Decimal, ByVal SV As Decimal, ByVal CompanyCode As String, ByVal ST As Decimal, ByVal OthAmt As Decimal) As CashRow
             Dim rowCashRow As CashRow = CType(Me.NewRow,CashRow)
-            Dim columnValuesArray() As Object = New Object() {Pddte, DocNo, ORNo, ChkNo, Payor, Amt, ImpAmt, ExpAmt, McAmt, SS, AR, SV, CompanyCode}
+            Dim columnValuesArray() As Object = New Object() {Pddte, DocNo, ORNo, ChkNo, Payor, Amt, ImpAmt, ExpAmt, McAmt, SS, AR, SV, CompanyCode, ST, OthAmt}
             rowCashRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCashRow)
             Return rowCashRow
@@ -2978,6 +3025,8 @@ Partial Public Class dsAcctRpt
             Me.columnAR = MyBase.Columns("AR")
             Me.columnSV = MyBase.Columns("SV")
             Me.columnCompanyCode = MyBase.Columns("CompanyCode")
+            Me.columnST = MyBase.Columns("ST")
+            Me.columnOthAmt = MyBase.Columns("OthAmt")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3009,6 +3058,10 @@ Partial Public Class dsAcctRpt
             MyBase.Columns.Add(Me.columnSV)
             Me.columnCompanyCode = New Global.System.Data.DataColumn("CompanyCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCompanyCode)
+            Me.columnST = New Global.System.Data.DataColumn("ST", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnST)
+            Me.columnOthAmt = New Global.System.Data.DataColumn("OthAmt", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOthAmt)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4887,6 +4940,36 @@ Partial Public Class dsAcctRpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ST() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableSales.STColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ST' in table 'Sales' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSales.STColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MC() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableSales.MCColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MC' in table 'Sales' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSales.MCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsInvdttmNull() As Boolean
             Return Me.IsNull(Me.tableSales.InvdttmColumn)
         End Function
@@ -5015,6 +5098,30 @@ Partial Public Class dsAcctRpt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetCompanyCodeNull()
             Me(Me.tableSales.CompanyCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSTNull() As Boolean
+            Return Me.IsNull(Me.tableSales.STColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSTNull()
+            Me(Me.tableSales.STColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMCNull() As Boolean
+            Return Me.IsNull(Me.tableSales.MCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMCNull()
+            Me(Me.tableSales.MCColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -5230,6 +5337,36 @@ Partial Public Class dsAcctRpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ST() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCash.STColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ST' in table 'Cash' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCash.STColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property OthAmt() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCash.OthAmtColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OthAmt' in table 'Cash' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCash.OthAmtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsPddteNull() As Boolean
             Return Me.IsNull(Me.tableCash.PddteColumn)
         End Function
@@ -5382,6 +5519,30 @@ Partial Public Class dsAcctRpt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetCompanyCodeNull()
             Me(Me.tableCash.CompanyCodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSTNull() As Boolean
+            Return Me.IsNull(Me.tableCash.STColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSTNull()
+            Me(Me.tableCash.STColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsOthAmtNull() As Boolean
+            Return Me.IsNull(Me.tableCash.OthAmtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetOthAmtNull()
+            Me(Me.tableCash.OthAmtColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

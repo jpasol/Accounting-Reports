@@ -288,7 +288,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdCCRDtl
                 .Connection = objConn
-                .CommandText = "SELECT distinct * FROM CCRDtl WHERE refnum =" & lngRefNum
+                .CommandText = "SELECT distinct CCRDTL.*, cyr_biltyp FROM CCRDtl inner join CYRate on chargetyp = cyr_rtecde WHERE refnum =" & lngRefNum
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()
@@ -332,7 +332,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdInvPayDtl
                 .Connection = objConn
-                .CommandText = "SELECT distinct * FROM InvPayDtl WHERE ornum =" & lngORNum
+                .CommandText = "SELECT distinct dtl.*, CompanyCode FROM InvPayDtl dtl inner join INVICT ict on dtl.invnum = ict.invnum WHERE ornum =" & lngORNum
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()

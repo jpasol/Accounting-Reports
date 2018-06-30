@@ -217,8 +217,10 @@ Public Class frmAcctRpt
         Dim strChkNo As String = ""
 
         Cursor = Cursors.WaitCursor
-
+#Region "Cash Register"
+        '''''''''''''CASH REGISTER''''''''''''''''
         If Trim(cmbRptType.Text) = "Cash Receipt" Then
+#Region "Export and Special Services"
             Dim lngExpAmt As Double = 0
             Dim lngSpcAmt As Double = 0
 
@@ -298,8 +300,7 @@ Public Class frmAcctRpt
                             '             lngExpAmt, 0, lngExpAmt, 0, 0, 0, 0)
                             Add_CashData(dtabCCRPay.Rows(lngCCRPay)("sysdttm"),
                                         strDocNo, "", Trim(strChkNo),
-                                        cusNameExp,
-                                        lngExpAmt, 0, lngExpAmt, 0, 0, 0, 0, dtabCCRCyx.Rows(0)("CompanyCode"))
+                                        cusNameExp, lngExpAmt, 0, lngExpAmt, 0, 0, 0, 0, 0, 0, dtabCCRCyx.Rows(0)("CompanyCode"))
 
 
                         Else 'Special Services
@@ -351,16 +352,28 @@ Public Class frmAcctRpt
                                 Loop
                             End If
 
-                            'Add cash data
-                            Add_CashData(dtabCCRPay.Rows(lngCCRPay)("sysdttm"),
+                            'Add cash data 'Jaspher by Charge Type
+                            Select Case dtabCCRDtl.Rows(0)("cyr_biltyp").ToString
+                                Case "ST"
+                                    Add_CashData(dtabCCRPay.Rows(lngCCRPay)("sysdttm"),
                                          strDocNo, "", Trim(strChkNo),
-                                         dtabCCRPay.Rows(lngCCRPay)("cusnam"), lngSpcAmt, 0, 0, lngSpcAmt, 0, 0, 0, dtabCCRDtl.Rows(0)("CompanyCode"))
+                                         dtabCCRPay.Rows(lngCCRPay)("cusnam"), lngSpcAmt, 0, 0, lngSpcAmt, 0, 0, 0, 0, 0, dtabCCRDtl.Rows(0)("CompanyCode"))
+                                Case "MC"
+                                    Add_CashData(dtabCCRPay.Rows(lngCCRPay)("sysdttm"),
+                                         strDocNo, "", Trim(strChkNo),
+                                         dtabCCRPay.Rows(lngCCRPay)("cusnam"), lngSpcAmt, 0, 0, 0, lngSpcAmt, 0, 0, 0, 0, dtabCCRDtl.Rows(0)("CompanyCode"))
+                                Case Else
+                                    Add_CashData(dtabCCRPay.Rows(lngCCRPay)("sysdttm"),
+                                                 strDocNo, "", Trim(strChkNo),
+                                                 dtabCCRPay.Rows(lngCCRPay)("cusnam"), lngSpcAmt, 0, 0, 0, 0, lngSpcAmt, 0, 0, 0, dtabCCRDtl.Rows(0)("CompanyCode"))
+                            End Select
                         End If
                     End If
                     lngCCRPay += 1
                 Loop
             End If
-
+#End Region
+#Region "Import"
             'Import
             dtabCYMPay = New DataTable
             dtabCYMPay = clsAcctRpt.Get_CYMPay(dtpStart.Text & " 00:00:00 AM", dtpEnd.Text & " 11:58:59 PM", cmbCompCode.Text.Trim)
@@ -456,13 +469,14 @@ Public Class frmAcctRpt
 
                             Add_CashData(dtabCYMPay.Rows(lngCYMPay)("sysdttm"),
                                          strDocNo, "", Trim(strChkNo),
-                                         custImp, lngCYMAmt, lngCYMAmt, 0, 0, 0, 0, 0, dtabCYMGps.Rows(0)("CompanyCode"))
+                                         custImp, lngCYMAmt, lngCYMAmt, 0, 0, 0, 0, 0, 0, 0, dtabCYMGps.Rows(0)("CompanyCode"))
                         End If
                     End If
                     lngCYMPay += 1
                 Loop
             End If
-
+#End Region
+#Region "Invoice"
             'Invoice
             dtabInvPayHdr = New DataTable
             dtabInvPayHdr = clsAcctRpt.Get_InvPayHdr(dtpStart.Text & " 00:00:00 AM", dtpEnd.Text & " 11:58:59 PM")
@@ -505,7 +519,7 @@ Public Class frmAcctRpt
                                     'Add cash data
                                     Add_CashData(dtabInvPayHdr.Rows(rowInvPayHdr)("ORDate"),
                                                  Trim("INV " & strDocNo), dtabInvPayHdr.Rows(rowInvPayHdr)("ORNum"), Trim(strChkNo),
-                                                 strCusName, lngInvAmt, 0, 0, 0, 0, lngInvAmt, 0, dtabInvPayDtl.Rows(intInvPayDtl)("CompanyCode"))
+                                                 strCusName, lngInvAmt, 0, 0, 0, 0, 0, 0, lngInvAmt, 0, dtabInvPayDtl.Rows(intInvPayDtl)("CompanyCode"))
                                 Else
                                     'Get invoice data
                                     Dim lngInvRefNo As Long = 0
@@ -515,6 +529,8 @@ Public Class frmAcctRpt
                                     Dim dblVC, dblVC1 As Double  'Vessel Charges
                                     Dim dblCIM, dblCIM1 As Double 'Import Cargoes
                                     Dim dblCEX, dblCEX1 As Double 'Export Cargoes
+                                    Dim dblST, dblST1 As Double 'Storage
+                                    Dim dblMC, dblMC1 As Double 'Reefer
                                     Dim dblSS, dblSS1 As Double 'Stripping/Stuffing
                                     Dim dblOth, dblOth1 As Double 'Other Charges
                                     'Invoice Amount
@@ -525,6 +541,8 @@ Public Class frmAcctRpt
                                     dblVC = 0 : dblVC1 = 0
                                     dblCIM = 0 : dblCIM1 = 0
                                     dblCEX = 0 : dblCEX1 = 0
+                                    dblST = 0 : dblST1 = 0
+                                    dblMC = 0 : dblMC1 = 0
                                     dblSS = 0 : dblSS1 = 0
                                     dblOth = 0 : dblOth1 = 0
 
@@ -545,9 +563,11 @@ Public Class frmAcctRpt
                                                     ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "IMP") > 0 Then
                                                         'Import Cargoes
                                                         dblCIM += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
-                                                    Else
-                                                        'Do nothing
                                                     End If
+                                                Case "ST" 'Storage
+                                                    dblST += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                Case "MC" 'Reefer
+                                                    dblMC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
                                                 Case "SS" 'Stripping/Stuffing
                                                     dblSS += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
                                                 Case Else 'Other Charges
@@ -584,16 +604,30 @@ Public Class frmAcctRpt
                                             dblCIM1 = dblCIM
                                         End If
                                     End If
+                                    If dblST > 0 Then 'Storage
+                                        If (dblVC + dblCEX + dblCIM + dblST) >= dblPayAmt Then
+                                            dblST1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1)
+                                        Else
+                                            dblST1 = dblST
+                                        End If
+                                    End If
+                                    If dblMC > 0 Then 'Reefer
+                                        If (dblVC + dblCEX + dblCIM + dblST + dblMC) >= dblPayAmt Then
+                                            dblMC1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblST1)
+                                        Else
+                                            dblMC1 = dblMC
+                                        End If
+                                    End If
                                     If dblSS > 0 Then 'Stripping/Stuffing
-                                        If (dblVC + dblCEX + dblCIM + dblSS) >= dblPayAmt Then
-                                            dblSS1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1)
+                                        If (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS) >= dblPayAmt Then
+                                            dblSS1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblST1 + dblMC1)
                                         Else
                                             dblSS1 = dblSS
                                         End If
                                     End If
                                     If dblOth > 0 Then 'Others
-                                        If (dblVC + dblCEX + dblCIM + dblSS + dblOth) >= dblPayAmt Then
-                                            dblOth1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblSS1)
+                                        If (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS + dblOth) >= dblPayAmt Then
+                                            dblOth1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblST1 + dblMC1 + dblSS1)
                                         Else
                                             dblOth1 = dblOth
                                         End If
@@ -602,7 +636,7 @@ Public Class frmAcctRpt
                                     'Add cash data
                                     Add_CashData(dtabInvPayHdr.Rows(rowInvPayHdr)("ORDate"),
                                                  Trim("INV " & strDocNo), dtabInvPayHdr.Rows(rowInvPayHdr)("ORNum"), Trim(strChkNo),
-                                                 strCusName, lngInvAmt, dblCIM1, dblCEX1, dblOth1, dblSS1, 0, dblVC1,
+                                                 strCusName, lngInvAmt, dblCIM1, dblCEX1, dblST1, dblMC1, dblOth1, dblSS1, 0, dblVC1,
                                                  dtabINVCYB.Rows(0)("CompanyCode"))
                                 End If
                             End If
@@ -623,6 +657,10 @@ Public Class frmAcctRpt
             rptCash.SetParameterValue("StartDte", dtpStart.Value)
             rptCash.SetParameterValue("EndDte", dtpEnd.Value)
             crvAcctRpt.ReportSource = rptCash
+#End Region
+#End Region
+#Region "Sales Register"
+            ''''''''''''''SALES REGISTER'''''''''''''''''
         ElseIf Trim(cmbRptType.Text) = "Sales Register" Then
             dtabSales = New dsAcctRpt.SalesDataTable
 
@@ -638,6 +676,8 @@ Public Class frmAcctRpt
                     Dim dblVC, dblVC1 As Double  'Vessel Charges
                     Dim dblCIM, dblCIM1 As Double 'Import Cargoes
                     Dim dblCEX, dblCEX1 As Double 'Export Cargoes
+                    Dim dblST, dblST1 As Double 'Storage
+                    Dim dblMC, dblMC1 As Double 'Reefer
                     Dim dblSS, dblSS1 As Double 'Stripping/Stuffing
                     Dim dblOth, dblOth1 As Double 'Other Charges
                     'Invoice Amount
@@ -649,6 +689,8 @@ Public Class frmAcctRpt
                     dblVC = 0 : dblVC1 = 0
                     dblCIM = 0 : dblCIM1 = 0
                     dblCEX = 0 : dblCEX1 = 0
+                    dblST = 0 : dblST1 = 0
+                    dblMC = 0 : dblMC1 = 0
                     dblSS = 0 : dblSS1 = 0
                     dblOth = 0 : dblOth1 = 0
 
@@ -669,9 +711,11 @@ Public Class frmAcctRpt
                                     ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "IMP") > 0 Then
                                         'Import Cargoes
                                         dblCIM += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
-                                    Else
-                                        'Do nothing
                                     End If
+                                Case "ST" 'Storage
+                                    dblST += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                Case "MC" 'Reefer
+                                    dblMC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
                                 Case "SS" 'Stripping/Stuffing
                                     dblSS += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
                                 Case Else 'Other Charges
@@ -687,18 +731,18 @@ Public Class frmAcctRpt
                         Call Add_SalesData(dtabINVICT.Rows(intInvCtr)("invdttm"),
                                            dtabINVICT.Rows(intInvCtr)("invnum"),
                                            "- - - - - C A N C E L L E D - - - - -",
-                                           0, 0, 0, 0, 0,
-                                           0, dtpEnd.MaxDate, dtabINVCYB.Rows(0)("invamt"))
+                                           dtabINVCYB.Rows(0)("invamt"), 0, 0, 0, 0, 0, 0,
+                                           0, dtpEnd.MaxDate)
                     Else
                         'Check if invoice has payment record,get paydate and invoice balance
                         Dim blnSkip As Boolean = False
 
                         dtabPayDtl = New DataTable
-                        dtabPayDtl = clsAcctRpt.Get_PayDtl(CLng(dtabINVICT.Rows(intInvCtr)("invnum").ToString), CDate(dtpEnd.Text & " 11:58:59 PM"))
-                        If dtabPayDtl.Rows.Count > 0 Then
-                            If CDbl(dtabPayDtl.Rows(0)("RBalance").ToString) = 0 Then
-                                blnSkip = True
-                            Else
+                        dtabPayDtl = clsAcctRpt.Get_PayDtl(CLng(dtabINVICT.Rows(intInvCtr)("invnum").ToString), CDate(dtpEnd.Text & " 11:58:59 PM")) 'Get Payment Details
+                        dblInvAmt = CDbl(dtabINVICT.Rows(intInvCtr)("InvAmt").ToString) 'Initialize Invoice Amount
+
+                        If dtabPayDtl.Rows.Count > 0 Then 'No Payment
+                            If CDbl(dtabPayDtl.Rows(0)("RBalance").ToString) <> 0 Then ' Has Balance 
                                 Dim dblPayAmt As Double = 0
 
                                 dblPayAmt = CDbl(dtabINVICT.Rows(intInvCtr)("InvAmt").ToString) - CDbl(dtabPayDtl.Rows(0)("RBalance").ToString)
@@ -708,50 +752,78 @@ Public Class frmAcctRpt
                                 If dblVC > 0 Then 'Vessel Charges
                                     If dblVC > dblPayAmt Then
                                         dblVC1 = dblVC - dblPayAmt
+                                    Else
+                                        dblVC1 = dblVC
                                     End If
                                 End If
                                 If dblCEX > 0 Then 'Export Cargoes
                                     If (dblVC + dblCEX) > dblPayAmt Then
                                         dblCEX1 = (dblVC + dblCEX) - (dblVC1) - dblPayAmt
+                                    Else
+                                        dblCEX1 = dblCEX
                                     End If
                                 End If
                                 If dblCIM > 0 Then 'Import Cargoes
                                     If (dblVC + dblCEX + dblCIM) > dblPayAmt Then
                                         dblCIM1 = (dblVC + dblCEX + dblCIM) - (dblVC1 + dblCEX1) - dblPayAmt
+                                    Else
+                                        dblCIM1 = dblCIM
+                                    End If
+                                End If
+                                If dblST > 0 Then 'Storage
+                                    If (dblVC + dblCEX + dblCIM + dblST) > dblPayAmt Then
+                                        dblST1 = (dblVC + dblCEX + dblCIM + dblST) - (dblVC1 + dblCEX1 + dblCIM1) - dblPayAmt
+                                    Else
+                                        dblST1 = dblST
+                                    End If
+                                End If
+                                If dblMC > 0 Then 'Reefer
+                                    If (dblVC + dblCEX + dblCIM + dblST + dblMC) > dblPayAmt Then
+                                        dblMC1 = (dblVC + dblCEX + dblCIM + dblST + dblMC) - (dblVC1 + dblCEX1 + dblCIM1 + dblST1) - dblPayAmt
+                                    Else
+                                        dblMC1 = dblMC
                                     End If
                                 End If
                                 If dblSS > 0 Then 'Stripping/Stuffing
-                                    If (dblVC + dblCEX + dblCIM + dblSS) > dblPayAmt Then
-                                        dblSS1 = (dblVC + dblCEX + dblCIM + dblSS) - (dblVC1 + dblCEX1 + dblCIM1) - dblPayAmt
+                                    If (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS) > dblPayAmt Then
+                                        dblSS1 = (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS) - (dblVC1 + dblCEX1 + dblCIM1 + dblST1 + dblMC1) - dblPayAmt
+                                    Else
+                                        dblSS1 = dblSS
                                     End If
                                 End If
                                 If dblOth > 0 Then 'Others
-                                    If (dblVC + dblCEX + dblCIM + dblSS + dblOth) > dblPayAmt Then
-                                        dblOth1 = (dblVC + dblCEX + dblCIM + dblSS + dblOth) - (dblVC1 + dblCEX1 + dblCIM1 + dblSS1) - dblPayAmt
+                                    If (dblVC + dblCEX + dblCIM + dblST + dblSS + dblOth) > dblPayAmt Then
+                                        dblOth1 = (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS + dblOth) - (dblVC1 + dblCEX1 + dblCIM1 + dblST1 + dblMC1 + dblSS1) - dblPayAmt
+                                    Else
+                                        dblOth1 = dblOth
                                     End If
                                 End If
+                            Else
+                                dblVC1 = dblVC
+                                dblCEX1 = dblCEX
+                                dblCIM1 = dblCIM
+                                dblST1 = dblST
+                                dblMC1 = dblMC
+                                dblSS1 = dblSS
+                                dblOth1 = dblOth
+
                             End If
 
-                            If blnSkip = False Then
-                                'Add Sales data to temporary table
-                                Call Add_SalesData(dtabINVICT.Rows(intInvCtr)("invdttm"),
+                            Call Add_SalesData(dtabINVICT.Rows(intInvCtr)("invdttm"),
                                                    dtabINVICT.Rows(intInvCtr)("invnum"),
                                                    dtabINVICT.Rows(intInvCtr)("cusnam"),
-                                                   dblInvAmt, dblVC1, dblCEX1, dblCIM1, dblSS1,
-                                                   dblOth1, dtabPayDtl.Rows(0)("Paydate"),
-                                                   "")
+                                                   dblInvAmt, dblVC1, dblCEX1, dblCIM1, dblST1, dblMC1,
+                                                   dblSS1, dblOth1, dtabPayDtl.Rows(0)("Paydate"))
 
-                            End If
                         Else
-                            dblInvAmt = CDbl(dtabINVICT.Rows(intInvCtr)("InvAmt").ToString)
                             strPayDte = ""
 
                             'Add Sales data to temporary table
                             Call Add_SalesData(dtabINVICT.Rows(intInvCtr)("invdttm"),
                                                dtabINVICT.Rows(intInvCtr)("invnum"),
                                                dtabINVICT.Rows(intInvCtr)("cusnam"),
-                                               dblInvAmt, dblVC, dblCEX, dblCIM, dblSS,
-                                               dblOth, dtpEnd.MaxDate, "")
+                                               dblInvAmt, dblVC, dblCEX, dblCIM, dblST, dblMC,
+                                               dblSS, dblOth, dtpEnd.MaxDate)
                         End If
                     End If
                     intInvCtr += 1
@@ -773,16 +845,16 @@ Public Class frmAcctRpt
             Cursor = Cursors.Default
             MsgBox("Please select a valid report type!", MsgBoxStyle.Exclamation, "Display Restriction")
         End If
-
+#End Region
         Cursor = Cursors.Default
     End Sub
 
     Private Sub Add_SalesData(ByVal dteInvDte As Date, ByVal lngInvNum As Long,
                               ByVal strCustomer As String, ByVal dblInvAmt As Double,
                               ByVal dblVC As Double, ByVal dblCEX As Double,
-                              ByVal dblCIM As Double, ByVal dblSS As Double,
-                              ByVal dblOth As Double, ByVal dtePayDte As Date,
-                              ByVal dblCompCode As String)
+                              ByVal dblCIM As Double, ByVal dblST As Double,
+                              ByVal dblMC As Double, ByVal dblSS As Double,
+                              ByVal dblOth As Double, ByVal dtePayDte As Date)
 
         Dim rowSales As dsAcctRpt.SalesRow
 
@@ -796,6 +868,8 @@ Public Class frmAcctRpt
             .VC = dblVC
             .CEX = dblCEX
             .CIM = dblCIM
+            .ST = dblST
+            .MC = dblMC
             .SS = dblSS
             .Others = dblOth
             If dtePayDte <> Date.MaxValue Then
@@ -810,9 +884,9 @@ Public Class frmAcctRpt
                              ByVal strOR As String, ByVal strChkNo As String,
                              ByVal strPayor As String, ByVal dblAmt As Double,
                              ByVal dblImp As Double, ByVal dblExp As Double,
-                             ByVal dblMC As Double, ByVal dblSS As Double,
-                             ByVal dblAR As Double, ByVal dblSV As Double,
-                             ByVal dblCompCode As String)
+                             ByVal dblST As Double, ByVal dblMC As Double, ByVal dblOth As Double,
+                             ByVal dblSS As Double, ByVal dblAR As Double,
+                             ByVal dblSV As Double, ByVal dblCompCode As String)
 
         Dim rowCash As dsAcctRpt.CashRow
 
@@ -827,7 +901,9 @@ Public Class frmAcctRpt
             .Amt = dblAmt
             .ImpAmt = dblImp
             .ExpAmt = dblExp
+            .ST = dblST
             .McAmt = dblMC
+            .OthAmt = dblOth
             .SS = dblSS
             .AR = dblAR
             .SV = dblSV
@@ -837,4 +913,7 @@ Public Class frmAcctRpt
         dtabCash.Rows.Add(rowCash)
     End Sub
 
+    Private Sub frmAcctRpt_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Text &= " v" & Application.ProductVersion
+    End Sub
 End Class

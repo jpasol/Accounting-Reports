@@ -1,155 +1,166 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xs:schema id="dsAcctRpt" targetNamespace="http://tempuri.org/dsAcctRpt.xsd" elementFormDefault="qualified"
-	attributeFormDefault="qualified" xmlns="http://tempuri.org/dsAcctRpt.xsd" xmlns:mstns="http://tempuri.org/dsAcctRpt.xsd"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-	<xs:element name="dsAcctRpt" msdata:IsDataSet="true">
-		<xs:complexType>
-			<xs:choice maxOccurs="unbounded">
-				<xs:element name="INVICT">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="refnum" type="xs:decimal" />
-							<xs:element name="invnum" type="xs:decimal" />
-							<xs:element name="cuscde" type="xs:string" />
-							<xs:element name="cusnam" type="xs:string" minOccurs="0" />
-							<xs:element name="invdttm" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="vslnam" type="xs:string" minOccurs="0" />
-							<xs:element name="regnum" type="xs:string" minOccurs="0" />
-							<xs:element name="invremark" type="xs:string" minOccurs="0" />
-							<xs:element name="invamt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="invvat" type="xs:decimal" minOccurs="0" />
-							<xs:element name="invtax" type="xs:decimal" minOccurs="0" />
-							<xs:element name="totalpay" type="xs:decimal" minOccurs="0" />
-							<xs:element name="gtycde" type="xs:string" />
-							<xs:element name="status" type="xs:string" minOccurs="0" />
-							<xs:element name="rectag" type="xs:string" minOccurs="0" />
-							<xs:element name="userid" type="xs:string" minOccurs="0" />
-							<xs:element name="updcde" type="xs:string" minOccurs="0" />
-							<xs:element name="cfscy" type="xs:string" minOccurs="0" />
-							<xs:element name="effdte" type="xs:string" minOccurs="0" />
-							<xs:element name="noncnt" type="xs:string" minOccurs="0" />
-							<xs:element name="arrival" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="voynum" type="xs:string" minOccurs="0" />
-							<xs:element name="Contested" type="xs:string" />
-							<xs:element name="term" type="xs:int" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="INVCYB">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="refnum" type="xs:decimal" />
-							<xs:element name="itmnum" type="xs:decimal" />
-							<xs:element name="rtecde" type="xs:string" minOccurs="0" />
-							<xs:element name="cntsze" type="xs:string" minOccurs="0" />
-							<xs:element name="rtedsc" type="xs:string" minOccurs="0" />
-							<xs:element name="qty" type="xs:decimal" minOccurs="0" />
-							<xs:element name="dyshrs" type="xs:decimal" minOccurs="0" />
-							<xs:element name="vatcde" type="xs:string" minOccurs="0" />
-							<xs:element name="invamt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="invtax" type="xs:decimal" minOccurs="0" />
-							<xs:element name="invvat" type="xs:decimal" minOccurs="0" />
-							<xs:element name="sysdttm" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="status" type="xs:string" minOccurs="0" />
-							<xs:element name="rectag" type="xs:string" minOccurs="0" />
-							<xs:element name="userid" type="xs:string" minOccurs="0" />
-							<xs:element name="updcde" type="xs:string" minOccurs="0" />
-							<xs:element name="discnt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="invremark" type="xs:string" minOccurs="0" />
-							<xs:element name="cargo" type="xs:string" minOccurs="0" />
-							<xs:element name="CompanyCode" type="xs:string" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="INVPAYDTL">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="ORNUM" type="xs:decimal" />
-							<xs:element name="INVNUM" type="xs:decimal" />
-							<xs:element name="INVAmt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="PAYAmt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="PAYDate" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="remarks" type="xs:string" minOccurs="0" />
-							<xs:element name="RBALANCE" type="xs:decimal" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="CYRate">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="cyr_rtecde" type="xs:string" />
-							<xs:element name="cyr_cntsze" type="xs:string" />
-							<xs:element name="cyr_rtetyp" type="xs:string" minOccurs="0" />
-							<xs:element name="cyr_rtedsc" type="xs:string" minOccurs="0" />
-							<xs:element name="cyr_rteamt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="cyr_uomcde" type="xs:string" minOccurs="0" />
-							<xs:element name="cyr_acccde" type="xs:string" minOccurs="0" />
-							<xs:element name="cyr_updcde" type="xs:string" minOccurs="0" />
-							<xs:element name="cyr_userid" type="xs:string" minOccurs="0" />
-							<xs:element name="cyr_sysdte" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="cyr_biltyp" type="xs:string" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="Sales">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="Invdttm" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="invnum" type="xs:decimal" minOccurs="0" />
-							<xs:element name="cusnam" type="xs:string" minOccurs="0" />
-							<xs:element name="invamt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="VC" type="xs:decimal" minOccurs="0" />
-							<xs:element name="CEX" type="xs:decimal" minOccurs="0" />
-							<xs:element name="CIM" type="xs:decimal" minOccurs="0" />
-							<xs:element name="SS" type="xs:decimal" minOccurs="0" />
-							<xs:element name="Others" type="xs:decimal" minOccurs="0" />
-							<xs:element name="PayDate" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="CompanyCode" type="xs:string" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-				<xs:element name="Cash">
-					<xs:complexType>
-						<xs:sequence>
-							<xs:element name="Pddte" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="DocNo" type="xs:string" minOccurs="0" />
-							<xs:element name="ORNo" type="xs:string" minOccurs="0" />
-							<xs:element name="ChkNo" type="xs:string" minOccurs="0" />
-							<xs:element name="Payor" type="xs:string" minOccurs="0" />
-							<xs:element name="Amt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="ImpAmt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="ExpAmt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="McAmt" type="xs:decimal" minOccurs="0" />
-							<xs:element name="SS" type="xs:decimal" minOccurs="0" />
-							<xs:element name="AR" type="xs:decimal" minOccurs="0" />
-							<xs:element name="SV" type="xs:decimal" minOccurs="0" />
-							<xs:element name="CompanyCode" type="xs:string" minOccurs="0" />
-						</xs:sequence>
-					</xs:complexType>
-				</xs:element>
-			</xs:choice>
-		</xs:complexType>
-		<xs:unique name="dsAcctRptKey1" msdata:PrimaryKey="true">
-			<xs:selector xpath=".//mstns:INVICT" />
-			<xs:field xpath="mstns:refnum" />
-		</xs:unique>
-		<xs:unique name="dsAcctRptKey2" msdata:PrimaryKey="true">
-			<xs:selector xpath=".//mstns:INVCYB" />
-			<xs:field xpath="mstns:refnum" />
-			<xs:field xpath="mstns:itmnum" />
-		</xs:unique>
-		<xs:unique name="dsAcctRptKey3" msdata:PrimaryKey="true">
-			<xs:selector xpath=".//mstns:INVPAYDTL" />
-			<xs:field xpath="mstns:ORNUM" />
-			<xs:field xpath="mstns:INVNUM" />
-		</xs:unique>
-		<xs:key name="dsAcctRptKey4">
-			<xs:selector xpath=".//mstns:INVCYB" />
-			<xs:field xpath="mstns:rtecde" />
-		</xs:key>
-		<xs:keyref name="INVCYBCYRate" refer="dsAcctRptKey4">
-			<xs:selector xpath=".//mstns:CYRate" />
-			<xs:field xpath="mstns:cyr_rtecde" />
-		</xs:keyref>
-	</xs:element>
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsAcctRpt" targetNamespace="http://tempuri.org/dsAcctRpt.xsd" xmlns:mstns="http://tempuri.org/dsAcctRpt.xsd" xmlns="http://tempuri.org/dsAcctRpt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsAcctRpt" msdata:IsDataSet="true" msdata:Locale="en-US" msprop:Generator_DataSetName="dsAcctRpt" msprop:Generator_UserDSName="dsAcctRpt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="INVICT" msprop:Generator_TableClassName="INVICTDataTable" msprop:Generator_TableVarName="tableINVICT" msprop:Generator_TablePropName="INVICT" msprop:Generator_RowDeletingName="INVICTRowDeleting" msprop:Generator_RowChangingName="INVICTRowChanging" msprop:Generator_RowEvHandlerName="INVICTRowChangeEventHandler" msprop:Generator_RowDeletedName="INVICTRowDeleted" msprop:Generator_UserTableName="INVICT" msprop:Generator_RowChangedName="INVICTRowChanged" msprop:Generator_RowEvArgName="INVICTRowChangeEvent" msprop:Generator_RowClassName="INVICTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="refnum" msprop:Generator_ColumnVarNameInTable="columnrefnum" msprop:Generator_ColumnPropNameInRow="refnum" msprop:Generator_ColumnPropNameInTable="refnumColumn" msprop:Generator_UserColumnName="refnum" type="xs:decimal" />
+              <xs:element name="invnum" msprop:Generator_ColumnVarNameInTable="columninvnum" msprop:Generator_ColumnPropNameInRow="invnum" msprop:Generator_ColumnPropNameInTable="invnumColumn" msprop:Generator_UserColumnName="invnum" type="xs:decimal" />
+              <xs:element name="cuscde" msprop:Generator_ColumnVarNameInTable="columncuscde" msprop:Generator_ColumnPropNameInRow="cuscde" msprop:Generator_ColumnPropNameInTable="cuscdeColumn" msprop:Generator_UserColumnName="cuscde" type="xs:string" />
+              <xs:element name="cusnam" msprop:Generator_ColumnVarNameInTable="columncusnam" msprop:Generator_ColumnPropNameInRow="cusnam" msprop:Generator_ColumnPropNameInTable="cusnamColumn" msprop:Generator_UserColumnName="cusnam" type="xs:string" minOccurs="0" />
+              <xs:element name="invdttm" msprop:Generator_ColumnVarNameInTable="columninvdttm" msprop:Generator_ColumnPropNameInRow="invdttm" msprop:Generator_ColumnPropNameInTable="invdttmColumn" msprop:Generator_UserColumnName="invdttm" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="vslnam" msprop:Generator_ColumnVarNameInTable="columnvslnam" msprop:Generator_ColumnPropNameInRow="vslnam" msprop:Generator_ColumnPropNameInTable="vslnamColumn" msprop:Generator_UserColumnName="vslnam" type="xs:string" minOccurs="0" />
+              <xs:element name="regnum" msprop:Generator_ColumnVarNameInTable="columnregnum" msprop:Generator_ColumnPropNameInRow="regnum" msprop:Generator_ColumnPropNameInTable="regnumColumn" msprop:Generator_UserColumnName="regnum" type="xs:string" minOccurs="0" />
+              <xs:element name="invremark" msprop:Generator_ColumnVarNameInTable="columninvremark" msprop:Generator_ColumnPropNameInRow="invremark" msprop:Generator_ColumnPropNameInTable="invremarkColumn" msprop:Generator_UserColumnName="invremark" type="xs:string" minOccurs="0" />
+              <xs:element name="invamt" msprop:Generator_ColumnVarNameInTable="columninvamt" msprop:Generator_ColumnPropNameInRow="invamt" msprop:Generator_ColumnPropNameInTable="invamtColumn" msprop:Generator_UserColumnName="invamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="invvat" msprop:Generator_ColumnVarNameInTable="columninvvat" msprop:Generator_ColumnPropNameInRow="invvat" msprop:Generator_ColumnPropNameInTable="invvatColumn" msprop:Generator_UserColumnName="invvat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="invtax" msprop:Generator_ColumnVarNameInTable="columninvtax" msprop:Generator_ColumnPropNameInRow="invtax" msprop:Generator_ColumnPropNameInTable="invtaxColumn" msprop:Generator_UserColumnName="invtax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="totalpay" msprop:Generator_ColumnVarNameInTable="columntotalpay" msprop:Generator_ColumnPropNameInRow="totalpay" msprop:Generator_ColumnPropNameInTable="totalpayColumn" msprop:Generator_UserColumnName="totalpay" type="xs:decimal" minOccurs="0" />
+              <xs:element name="gtycde" msprop:Generator_ColumnVarNameInTable="columngtycde" msprop:Generator_ColumnPropNameInRow="gtycde" msprop:Generator_ColumnPropNameInTable="gtycdeColumn" msprop:Generator_UserColumnName="gtycde" type="xs:string" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status" type="xs:string" minOccurs="0" />
+              <xs:element name="rectag" msprop:Generator_ColumnVarNameInTable="columnrectag" msprop:Generator_ColumnPropNameInRow="rectag" msprop:Generator_ColumnPropNameInTable="rectagColumn" msprop:Generator_UserColumnName="rectag" type="xs:string" minOccurs="0" />
+              <xs:element name="userid" msprop:Generator_ColumnVarNameInTable="columnuserid" msprop:Generator_ColumnPropNameInRow="userid" msprop:Generator_ColumnPropNameInTable="useridColumn" msprop:Generator_UserColumnName="userid" type="xs:string" minOccurs="0" />
+              <xs:element name="updcde" msprop:Generator_ColumnVarNameInTable="columnupdcde" msprop:Generator_ColumnPropNameInRow="updcde" msprop:Generator_ColumnPropNameInTable="updcdeColumn" msprop:Generator_UserColumnName="updcde" type="xs:string" minOccurs="0" />
+              <xs:element name="cfscy" msprop:Generator_ColumnVarNameInTable="columncfscy" msprop:Generator_ColumnPropNameInRow="cfscy" msprop:Generator_ColumnPropNameInTable="cfscyColumn" msprop:Generator_UserColumnName="cfscy" type="xs:string" minOccurs="0" />
+              <xs:element name="effdte" msprop:Generator_ColumnVarNameInTable="columneffdte" msprop:Generator_ColumnPropNameInRow="effdte" msprop:Generator_ColumnPropNameInTable="effdteColumn" msprop:Generator_UserColumnName="effdte" type="xs:string" minOccurs="0" />
+              <xs:element name="noncnt" msprop:Generator_ColumnVarNameInTable="columnnoncnt" msprop:Generator_ColumnPropNameInRow="noncnt" msprop:Generator_ColumnPropNameInTable="noncntColumn" msprop:Generator_UserColumnName="noncnt" type="xs:string" minOccurs="0" />
+              <xs:element name="arrival" msprop:Generator_ColumnVarNameInTable="columnarrival" msprop:Generator_ColumnPropNameInRow="arrival" msprop:Generator_ColumnPropNameInTable="arrivalColumn" msprop:Generator_UserColumnName="arrival" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="voynum" msprop:Generator_ColumnVarNameInTable="columnvoynum" msprop:Generator_ColumnPropNameInRow="voynum" msprop:Generator_ColumnPropNameInTable="voynumColumn" msprop:Generator_UserColumnName="voynum" type="xs:string" minOccurs="0" />
+              <xs:element name="Contested" msprop:Generator_ColumnVarNameInTable="columnContested" msprop:Generator_ColumnPropNameInRow="Contested" msprop:Generator_ColumnPropNameInTable="ContestedColumn" msprop:Generator_UserColumnName="Contested" type="xs:string" />
+              <xs:element name="term" msprop:Generator_ColumnVarNameInTable="columnterm" msprop:Generator_ColumnPropNameInRow="term" msprop:Generator_ColumnPropNameInTable="termColumn" msprop:Generator_UserColumnName="term" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="INVCYB" msprop:Generator_TableClassName="INVCYBDataTable" msprop:Generator_TableVarName="tableINVCYB" msprop:Generator_TablePropName="INVCYB" msprop:Generator_RowDeletingName="INVCYBRowDeleting" msprop:Generator_RowChangingName="INVCYBRowChanging" msprop:Generator_RowEvHandlerName="INVCYBRowChangeEventHandler" msprop:Generator_RowDeletedName="INVCYBRowDeleted" msprop:Generator_UserTableName="INVCYB" msprop:Generator_RowChangedName="INVCYBRowChanged" msprop:Generator_RowEvArgName="INVCYBRowChangeEvent" msprop:Generator_RowClassName="INVCYBRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="refnum" msprop:Generator_ColumnVarNameInTable="columnrefnum" msprop:Generator_ColumnPropNameInRow="refnum" msprop:Generator_ColumnPropNameInTable="refnumColumn" msprop:Generator_UserColumnName="refnum" type="xs:decimal" />
+              <xs:element name="itmnum" msprop:Generator_ColumnVarNameInTable="columnitmnum" msprop:Generator_ColumnPropNameInRow="itmnum" msprop:Generator_ColumnPropNameInTable="itmnumColumn" msprop:Generator_UserColumnName="itmnum" type="xs:decimal" />
+              <xs:element name="rtecde" msprop:Generator_ColumnVarNameInTable="columnrtecde" msprop:Generator_ColumnPropNameInRow="rtecde" msprop:Generator_ColumnPropNameInTable="rtecdeColumn" msprop:Generator_UserColumnName="rtecde" type="xs:string" />
+              <xs:element name="cntsze" msprop:Generator_ColumnVarNameInTable="columncntsze" msprop:Generator_ColumnPropNameInRow="cntsze" msprop:Generator_ColumnPropNameInTable="cntszeColumn" msprop:Generator_UserColumnName="cntsze" type="xs:string" minOccurs="0" />
+              <xs:element name="rtedsc" msprop:Generator_ColumnVarNameInTable="columnrtedsc" msprop:Generator_ColumnPropNameInRow="rtedsc" msprop:Generator_ColumnPropNameInTable="rtedscColumn" msprop:Generator_UserColumnName="rtedsc" type="xs:string" minOccurs="0" />
+              <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dyshrs" msprop:Generator_ColumnVarNameInTable="columndyshrs" msprop:Generator_ColumnPropNameInRow="dyshrs" msprop:Generator_ColumnPropNameInTable="dyshrsColumn" msprop:Generator_UserColumnName="dyshrs" type="xs:decimal" minOccurs="0" />
+              <xs:element name="vatcde" msprop:Generator_ColumnVarNameInTable="columnvatcde" msprop:Generator_ColumnPropNameInRow="vatcde" msprop:Generator_ColumnPropNameInTable="vatcdeColumn" msprop:Generator_UserColumnName="vatcde" type="xs:string" minOccurs="0" />
+              <xs:element name="invamt" msprop:Generator_ColumnVarNameInTable="columninvamt" msprop:Generator_ColumnPropNameInRow="invamt" msprop:Generator_ColumnPropNameInTable="invamtColumn" msprop:Generator_UserColumnName="invamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="invtax" msprop:Generator_ColumnVarNameInTable="columninvtax" msprop:Generator_ColumnPropNameInRow="invtax" msprop:Generator_ColumnPropNameInTable="invtaxColumn" msprop:Generator_UserColumnName="invtax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="invvat" msprop:Generator_ColumnVarNameInTable="columninvvat" msprop:Generator_ColumnPropNameInRow="invvat" msprop:Generator_ColumnPropNameInTable="invvatColumn" msprop:Generator_UserColumnName="invvat" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sysdttm" msprop:Generator_ColumnVarNameInTable="columnsysdttm" msprop:Generator_ColumnPropNameInRow="sysdttm" msprop:Generator_ColumnPropNameInTable="sysdttmColumn" msprop:Generator_UserColumnName="sysdttm" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status" type="xs:string" minOccurs="0" />
+              <xs:element name="rectag" msprop:Generator_ColumnVarNameInTable="columnrectag" msprop:Generator_ColumnPropNameInRow="rectag" msprop:Generator_ColumnPropNameInTable="rectagColumn" msprop:Generator_UserColumnName="rectag" type="xs:string" minOccurs="0" />
+              <xs:element name="userid" msprop:Generator_ColumnVarNameInTable="columnuserid" msprop:Generator_ColumnPropNameInRow="userid" msprop:Generator_ColumnPropNameInTable="useridColumn" msprop:Generator_UserColumnName="userid" type="xs:string" minOccurs="0" />
+              <xs:element name="updcde" msprop:Generator_ColumnVarNameInTable="columnupdcde" msprop:Generator_ColumnPropNameInRow="updcde" msprop:Generator_ColumnPropNameInTable="updcdeColumn" msprop:Generator_UserColumnName="updcde" type="xs:string" minOccurs="0" />
+              <xs:element name="discnt" msprop:Generator_ColumnVarNameInTable="columndiscnt" msprop:Generator_ColumnPropNameInRow="discnt" msprop:Generator_ColumnPropNameInTable="discntColumn" msprop:Generator_UserColumnName="discnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="invremark" msprop:Generator_ColumnVarNameInTable="columninvremark" msprop:Generator_ColumnPropNameInRow="invremark" msprop:Generator_ColumnPropNameInTable="invremarkColumn" msprop:Generator_UserColumnName="invremark" type="xs:string" minOccurs="0" />
+              <xs:element name="cargo" msprop:Generator_ColumnVarNameInTable="columncargo" msprop:Generator_ColumnPropNameInRow="cargo" msprop:Generator_ColumnPropNameInTable="cargoColumn" msprop:Generator_UserColumnName="cargo" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyCode" msprop:Generator_ColumnVarNameInTable="columnCompanyCode" msprop:Generator_ColumnPropNameInRow="CompanyCode" msprop:Generator_ColumnPropNameInTable="CompanyCodeColumn" msprop:Generator_UserColumnName="CompanyCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="INVPAYDTL" msprop:Generator_TableClassName="INVPAYDTLDataTable" msprop:Generator_TableVarName="tableINVPAYDTL" msprop:Generator_TablePropName="INVPAYDTL" msprop:Generator_RowDeletingName="INVPAYDTLRowDeleting" msprop:Generator_RowChangingName="INVPAYDTLRowChanging" msprop:Generator_RowEvHandlerName="INVPAYDTLRowChangeEventHandler" msprop:Generator_RowDeletedName="INVPAYDTLRowDeleted" msprop:Generator_UserTableName="INVPAYDTL" msprop:Generator_RowChangedName="INVPAYDTLRowChanged" msprop:Generator_RowEvArgName="INVPAYDTLRowChangeEvent" msprop:Generator_RowClassName="INVPAYDTLRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ORNUM" msprop:Generator_ColumnVarNameInTable="columnORNUM" msprop:Generator_ColumnPropNameInRow="ORNUM" msprop:Generator_ColumnPropNameInTable="ORNUMColumn" msprop:Generator_UserColumnName="ORNUM" type="xs:decimal" />
+              <xs:element name="INVNUM" msprop:Generator_ColumnVarNameInTable="columnINVNUM" msprop:Generator_ColumnPropNameInRow="INVNUM" msprop:Generator_ColumnPropNameInTable="INVNUMColumn" msprop:Generator_UserColumnName="INVNUM" type="xs:decimal" />
+              <xs:element name="INVAmt" msprop:Generator_ColumnVarNameInTable="columnINVAmt" msprop:Generator_ColumnPropNameInRow="INVAmt" msprop:Generator_ColumnPropNameInTable="INVAmtColumn" msprop:Generator_UserColumnName="INVAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAYAmt" msprop:Generator_ColumnVarNameInTable="columnPAYAmt" msprop:Generator_ColumnPropNameInRow="PAYAmt" msprop:Generator_ColumnPropNameInTable="PAYAmtColumn" msprop:Generator_UserColumnName="PAYAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PAYDate" msprop:Generator_ColumnVarNameInTable="columnPAYDate" msprop:Generator_ColumnPropNameInRow="PAYDate" msprop:Generator_ColumnPropNameInTable="PAYDateColumn" msprop:Generator_UserColumnName="PAYDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="remarks" msprop:Generator_ColumnVarNameInTable="columnremarks" msprop:Generator_ColumnPropNameInRow="remarks" msprop:Generator_ColumnPropNameInTable="remarksColumn" msprop:Generator_UserColumnName="remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="RBALANCE" msprop:Generator_ColumnVarNameInTable="columnRBALANCE" msprop:Generator_ColumnPropNameInRow="RBALANCE" msprop:Generator_ColumnPropNameInTable="RBALANCEColumn" msprop:Generator_UserColumnName="RBALANCE" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CYRate" msprop:Generator_TableClassName="CYRateDataTable" msprop:Generator_TableVarName="tableCYRate" msprop:Generator_TablePropName="CYRate" msprop:Generator_RowDeletingName="CYRateRowDeleting" msprop:Generator_RowChangingName="CYRateRowChanging" msprop:Generator_RowEvHandlerName="CYRateRowChangeEventHandler" msprop:Generator_RowDeletedName="CYRateRowDeleted" msprop:Generator_UserTableName="CYRate" msprop:Generator_RowChangedName="CYRateRowChanged" msprop:Generator_RowEvArgName="CYRateRowChangeEvent" msprop:Generator_RowClassName="CYRateRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cyr_rtecde" msprop:Generator_ColumnVarNameInTable="columncyr_rtecde" msprop:Generator_ColumnPropNameInRow="cyr_rtecde" msprop:Generator_ColumnPropNameInTable="cyr_rtecdeColumn" msprop:Generator_UserColumnName="cyr_rtecde" type="xs:string" />
+              <xs:element name="cyr_cntsze" msprop:Generator_ColumnVarNameInTable="columncyr_cntsze" msprop:Generator_ColumnPropNameInRow="cyr_cntsze" msprop:Generator_ColumnPropNameInTable="cyr_cntszeColumn" msprop:Generator_UserColumnName="cyr_cntsze" type="xs:string" />
+              <xs:element name="cyr_rtetyp" msprop:Generator_ColumnVarNameInTable="columncyr_rtetyp" msprop:Generator_ColumnPropNameInRow="cyr_rtetyp" msprop:Generator_ColumnPropNameInTable="cyr_rtetypColumn" msprop:Generator_UserColumnName="cyr_rtetyp" type="xs:string" minOccurs="0" />
+              <xs:element name="cyr_rtedsc" msprop:Generator_ColumnVarNameInTable="columncyr_rtedsc" msprop:Generator_ColumnPropNameInRow="cyr_rtedsc" msprop:Generator_ColumnPropNameInTable="cyr_rtedscColumn" msprop:Generator_UserColumnName="cyr_rtedsc" type="xs:string" minOccurs="0" />
+              <xs:element name="cyr_rteamt" msprop:Generator_ColumnVarNameInTable="columncyr_rteamt" msprop:Generator_ColumnPropNameInRow="cyr_rteamt" msprop:Generator_ColumnPropNameInTable="cyr_rteamtColumn" msprop:Generator_UserColumnName="cyr_rteamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cyr_uomcde" msprop:Generator_ColumnVarNameInTable="columncyr_uomcde" msprop:Generator_ColumnPropNameInRow="cyr_uomcde" msprop:Generator_ColumnPropNameInTable="cyr_uomcdeColumn" msprop:Generator_UserColumnName="cyr_uomcde" type="xs:string" minOccurs="0" />
+              <xs:element name="cyr_acccde" msprop:Generator_ColumnVarNameInTable="columncyr_acccde" msprop:Generator_ColumnPropNameInRow="cyr_acccde" msprop:Generator_ColumnPropNameInTable="cyr_acccdeColumn" msprop:Generator_UserColumnName="cyr_acccde" type="xs:string" minOccurs="0" />
+              <xs:element name="cyr_updcde" msprop:Generator_ColumnVarNameInTable="columncyr_updcde" msprop:Generator_ColumnPropNameInRow="cyr_updcde" msprop:Generator_ColumnPropNameInTable="cyr_updcdeColumn" msprop:Generator_UserColumnName="cyr_updcde" type="xs:string" minOccurs="0" />
+              <xs:element name="cyr_userid" msprop:Generator_ColumnVarNameInTable="columncyr_userid" msprop:Generator_ColumnPropNameInRow="cyr_userid" msprop:Generator_ColumnPropNameInTable="cyr_useridColumn" msprop:Generator_UserColumnName="cyr_userid" type="xs:string" minOccurs="0" />
+              <xs:element name="cyr_sysdte" msprop:Generator_ColumnVarNameInTable="columncyr_sysdte" msprop:Generator_ColumnPropNameInRow="cyr_sysdte" msprop:Generator_ColumnPropNameInTable="cyr_sysdteColumn" msprop:Generator_UserColumnName="cyr_sysdte" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cyr_biltyp" msprop:Generator_ColumnVarNameInTable="columncyr_biltyp" msprop:Generator_ColumnPropNameInRow="cyr_biltyp" msprop:Generator_ColumnPropNameInTable="cyr_biltypColumn" msprop:Generator_UserColumnName="cyr_biltyp" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Sales" msprop:Generator_TableClassName="SalesDataTable" msprop:Generator_TableVarName="tableSales" msprop:Generator_TablePropName="Sales" msprop:Generator_RowDeletingName="SalesRowDeleting" msprop:Generator_RowChangingName="SalesRowChanging" msprop:Generator_RowEvHandlerName="SalesRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesRowDeleted" msprop:Generator_UserTableName="Sales" msprop:Generator_RowChangedName="SalesRowChanged" msprop:Generator_RowEvArgName="SalesRowChangeEvent" msprop:Generator_RowClassName="SalesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Invdttm" msprop:Generator_ColumnVarNameInTable="columnInvdttm" msprop:Generator_ColumnPropNameInRow="Invdttm" msprop:Generator_ColumnPropNameInTable="InvdttmColumn" msprop:Generator_UserColumnName="Invdttm" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="invnum" msprop:Generator_ColumnVarNameInTable="columninvnum" msprop:Generator_ColumnPropNameInRow="invnum" msprop:Generator_ColumnPropNameInTable="invnumColumn" msprop:Generator_UserColumnName="invnum" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cusnam" msprop:Generator_ColumnVarNameInTable="columncusnam" msprop:Generator_ColumnPropNameInRow="cusnam" msprop:Generator_ColumnPropNameInTable="cusnamColumn" msprop:Generator_UserColumnName="cusnam" type="xs:string" minOccurs="0" />
+              <xs:element name="invamt" msprop:Generator_ColumnVarNameInTable="columninvamt" msprop:Generator_ColumnPropNameInRow="invamt" msprop:Generator_ColumnPropNameInTable="invamtColumn" msprop:Generator_UserColumnName="invamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VC" msprop:Generator_ColumnVarNameInTable="columnVC" msprop:Generator_ColumnPropNameInRow="VC" msprop:Generator_ColumnPropNameInTable="VCColumn" msprop:Generator_UserColumnName="VC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CEX" msprop:Generator_ColumnVarNameInTable="columnCEX" msprop:Generator_ColumnPropNameInRow="CEX" msprop:Generator_ColumnPropNameInTable="CEXColumn" msprop:Generator_UserColumnName="CEX" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CIM" msprop:Generator_ColumnVarNameInTable="columnCIM" msprop:Generator_ColumnPropNameInRow="CIM" msprop:Generator_ColumnPropNameInTable="CIMColumn" msprop:Generator_UserColumnName="CIM" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SS" msprop:Generator_ColumnVarNameInTable="columnSS" msprop:Generator_ColumnPropNameInRow="SS" msprop:Generator_ColumnPropNameInTable="SSColumn" msprop:Generator_UserColumnName="SS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Others" msprop:Generator_ColumnVarNameInTable="columnOthers" msprop:Generator_ColumnPropNameInRow="Others" msprop:Generator_ColumnPropNameInTable="OthersColumn" msprop:Generator_UserColumnName="Others" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PayDate" msprop:Generator_ColumnVarNameInTable="columnPayDate" msprop:Generator_ColumnPropNameInRow="PayDate" msprop:Generator_ColumnPropNameInTable="PayDateColumn" msprop:Generator_UserColumnName="PayDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CompanyCode" msprop:Generator_ColumnVarNameInTable="columnCompanyCode" msprop:Generator_ColumnPropNameInRow="CompanyCode" msprop:Generator_ColumnPropNameInTable="CompanyCodeColumn" msprop:Generator_UserColumnName="CompanyCode" type="xs:string" minOccurs="0" />
+              <xs:element name="ST" msprop:Generator_ColumnVarNameInTable="columnST" msprop:Generator_ColumnPropNameInRow="ST" msprop:Generator_ColumnPropNameInTable="STColumn" msprop:Generator_UserColumnName="ST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MC" msprop:Generator_ColumnVarNameInTable="columnMC" msprop:Generator_ColumnPropNameInRow="MC" msprop:Generator_ColumnPropNameInTable="MCColumn" msprop:Generator_UserColumnName="MC" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Cash" msprop:Generator_TableClassName="CashDataTable" msprop:Generator_TableVarName="tableCash" msprop:Generator_TablePropName="Cash" msprop:Generator_RowDeletingName="CashRowDeleting" msprop:Generator_RowChangingName="CashRowChanging" msprop:Generator_RowEvHandlerName="CashRowChangeEventHandler" msprop:Generator_RowDeletedName="CashRowDeleted" msprop:Generator_UserTableName="Cash" msprop:Generator_RowChangedName="CashRowChanged" msprop:Generator_RowEvArgName="CashRowChangeEvent" msprop:Generator_RowClassName="CashRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pddte" msprop:Generator_ColumnVarNameInTable="columnPddte" msprop:Generator_ColumnPropNameInRow="Pddte" msprop:Generator_ColumnPropNameInTable="PddteColumn" msprop:Generator_UserColumnName="Pddte" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DocNo" msprop:Generator_ColumnVarNameInTable="columnDocNo" msprop:Generator_ColumnPropNameInRow="DocNo" msprop:Generator_ColumnPropNameInTable="DocNoColumn" msprop:Generator_UserColumnName="DocNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ORNo" msprop:Generator_ColumnVarNameInTable="columnORNo" msprop:Generator_ColumnPropNameInRow="ORNo" msprop:Generator_ColumnPropNameInTable="ORNoColumn" msprop:Generator_UserColumnName="ORNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ChkNo" msprop:Generator_ColumnVarNameInTable="columnChkNo" msprop:Generator_ColumnPropNameInRow="ChkNo" msprop:Generator_ColumnPropNameInTable="ChkNoColumn" msprop:Generator_UserColumnName="ChkNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Payor" msprop:Generator_ColumnVarNameInTable="columnPayor" msprop:Generator_ColumnPropNameInRow="Payor" msprop:Generator_ColumnPropNameInTable="PayorColumn" msprop:Generator_UserColumnName="Payor" type="xs:string" minOccurs="0" />
+              <xs:element name="Amt" msprop:Generator_ColumnVarNameInTable="columnAmt" msprop:Generator_ColumnPropNameInRow="Amt" msprop:Generator_ColumnPropNameInTable="AmtColumn" msprop:Generator_UserColumnName="Amt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ImpAmt" msprop:Generator_ColumnVarNameInTable="columnImpAmt" msprop:Generator_ColumnPropNameInRow="ImpAmt" msprop:Generator_ColumnPropNameInTable="ImpAmtColumn" msprop:Generator_UserColumnName="ImpAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ExpAmt" msprop:Generator_ColumnVarNameInTable="columnExpAmt" msprop:Generator_ColumnPropNameInRow="ExpAmt" msprop:Generator_ColumnPropNameInTable="ExpAmtColumn" msprop:Generator_UserColumnName="ExpAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="McAmt" msprop:Generator_ColumnVarNameInTable="columnMcAmt" msprop:Generator_ColumnPropNameInRow="McAmt" msprop:Generator_ColumnPropNameInTable="McAmtColumn" msprop:Generator_UserColumnName="McAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SS" msprop:Generator_ColumnVarNameInTable="columnSS" msprop:Generator_ColumnPropNameInRow="SS" msprop:Generator_ColumnPropNameInTable="SSColumn" msprop:Generator_UserColumnName="SS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AR" msprop:Generator_ColumnVarNameInTable="columnAR" msprop:Generator_ColumnPropNameInRow="AR" msprop:Generator_ColumnPropNameInTable="ARColumn" msprop:Generator_UserColumnName="AR" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SV" msprop:Generator_ColumnVarNameInTable="columnSV" msprop:Generator_ColumnPropNameInRow="SV" msprop:Generator_ColumnPropNameInTable="SVColumn" msprop:Generator_UserColumnName="SV" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CompanyCode" msprop:Generator_ColumnVarNameInTable="columnCompanyCode" msprop:Generator_ColumnPropNameInRow="CompanyCode" msprop:Generator_ColumnPropNameInTable="CompanyCodeColumn" msprop:Generator_UserColumnName="CompanyCode" type="xs:string" minOccurs="0" />
+              <xs:element name="ST" msprop:Generator_ColumnVarNameInTable="columnST" msprop:Generator_ColumnPropNameInRow="ST" msprop:Generator_ColumnPropNameInTable="STColumn" msprop:Generator_UserColumnName="ST" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OthAmt" msprop:Generator_ColumnVarNameInTable="columnOthAmt" msprop:Generator_ColumnPropNameInRow="OthAmt" msprop:Generator_ColumnPropNameInTable="OthAmtColumn" msprop:Generator_UserColumnName="OthAmt" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="dsAcctRptKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:INVICT" />
+      <xs:field xpath="mstns:refnum" />
+    </xs:unique>
+    <xs:unique name="dsAcctRptKey2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:INVCYB" />
+      <xs:field xpath="mstns:refnum" />
+      <xs:field xpath="mstns:itmnum" />
+    </xs:unique>
+    <xs:unique name="dsAcctRptKey4">
+      <xs:selector xpath=".//mstns:INVCYB" />
+      <xs:field xpath="mstns:rtecde" />
+    </xs:unique>
+    <xs:unique name="dsAcctRptKey3" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:INVPAYDTL" />
+      <xs:field xpath="mstns:ORNUM" />
+      <xs:field xpath="mstns:INVNUM" />
+    </xs:unique>
+    <xs:keyref name="INVCYBCYRate" refer="dsAcctRptKey4" msprop:rel_Generator_UserChildTable="CYRate" msprop:rel_Generator_ChildPropName="GetCYRateRows" msprop:rel_Generator_UserRelationName="INVCYBCYRate" msprop:rel_Generator_ParentPropName="INVCYBRow" msprop:rel_Generator_RelationVarName="relationINVCYBCYRate" msprop:rel_Generator_UserParentTable="INVCYB">
+      <xs:selector xpath=".//mstns:CYRate" />
+      <xs:field xpath="mstns:cyr_rtecde" />
+    </xs:keyref>
+  </xs:element>
 </xs:schema>
