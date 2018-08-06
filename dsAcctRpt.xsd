@@ -12,7 +12,7 @@
   <xs:element name="dsAcctRpt" msdata:IsDataSet="true" msdata:Locale="en-US" msprop:Generator_DataSetName="dsAcctRpt" msprop:Generator_UserDSName="dsAcctRpt">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="INVICT" msprop:Generator_TableClassName="INVICTDataTable" msprop:Generator_TableVarName="tableINVICT" msprop:Generator_TablePropName="INVICT" msprop:Generator_RowDeletingName="INVICTRowDeleting" msprop:Generator_RowChangingName="INVICTRowChanging" msprop:Generator_RowEvHandlerName="INVICTRowChangeEventHandler" msprop:Generator_RowDeletedName="INVICTRowDeleted" msprop:Generator_UserTableName="INVICT" msprop:Generator_RowChangedName="INVICTRowChanged" msprop:Generator_RowEvArgName="INVICTRowChangeEvent" msprop:Generator_RowClassName="INVICTRow">
+        <xs:element name="INVICT" msprop:Generator_TableClassName="INVICTDataTable" msprop:Generator_TableVarName="tableINVICT" msprop:Generator_RowChangedName="INVICTRowChanged" msprop:Generator_TablePropName="INVICT" msprop:Generator_RowDeletingName="INVICTRowDeleting" msprop:Generator_RowChangingName="INVICTRowChanging" msprop:Generator_RowEvHandlerName="INVICTRowChangeEventHandler" msprop:Generator_RowDeletedName="INVICTRowDeleted" msprop:Generator_RowClassName="INVICTRow" msprop:Generator_UserTableName="INVICT" msprop:Generator_RowEvArgName="INVICTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="refnum" msprop:Generator_ColumnVarNameInTable="columnrefnum" msprop:Generator_ColumnPropNameInRow="refnum" msprop:Generator_ColumnPropNameInTable="refnumColumn" msprop:Generator_UserColumnName="refnum" type="xs:decimal" />
@@ -42,7 +42,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INVCYB" msprop:Generator_TableClassName="INVCYBDataTable" msprop:Generator_TableVarName="tableINVCYB" msprop:Generator_TablePropName="INVCYB" msprop:Generator_RowDeletingName="INVCYBRowDeleting" msprop:Generator_RowChangingName="INVCYBRowChanging" msprop:Generator_RowEvHandlerName="INVCYBRowChangeEventHandler" msprop:Generator_RowDeletedName="INVCYBRowDeleted" msprop:Generator_UserTableName="INVCYB" msprop:Generator_RowChangedName="INVCYBRowChanged" msprop:Generator_RowEvArgName="INVCYBRowChangeEvent" msprop:Generator_RowClassName="INVCYBRow">
+        <xs:element name="INVCYB" msprop:Generator_TableClassName="INVCYBDataTable" msprop:Generator_TableVarName="tableINVCYB" msprop:Generator_RowChangedName="INVCYBRowChanged" msprop:Generator_TablePropName="INVCYB" msprop:Generator_RowDeletingName="INVCYBRowDeleting" msprop:Generator_RowChangingName="INVCYBRowChanging" msprop:Generator_RowEvHandlerName="INVCYBRowChangeEventHandler" msprop:Generator_RowDeletedName="INVCYBRowDeleted" msprop:Generator_RowClassName="INVCYBRow" msprop:Generator_UserTableName="INVCYB" msprop:Generator_RowEvArgName="INVCYBRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="refnum" msprop:Generator_ColumnVarNameInTable="columnrefnum" msprop:Generator_ColumnPropNameInRow="refnum" msprop:Generator_ColumnPropNameInTable="refnumColumn" msprop:Generator_UserColumnName="refnum" type="xs:decimal" />
@@ -68,7 +68,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INVPAYDTL" msprop:Generator_TableClassName="INVPAYDTLDataTable" msprop:Generator_TableVarName="tableINVPAYDTL" msprop:Generator_TablePropName="INVPAYDTL" msprop:Generator_RowDeletingName="INVPAYDTLRowDeleting" msprop:Generator_RowChangingName="INVPAYDTLRowChanging" msprop:Generator_RowEvHandlerName="INVPAYDTLRowChangeEventHandler" msprop:Generator_RowDeletedName="INVPAYDTLRowDeleted" msprop:Generator_UserTableName="INVPAYDTL" msprop:Generator_RowChangedName="INVPAYDTLRowChanged" msprop:Generator_RowEvArgName="INVPAYDTLRowChangeEvent" msprop:Generator_RowClassName="INVPAYDTLRow">
+        <xs:element name="INVPAYDTL" msprop:Generator_TableClassName="INVPAYDTLDataTable" msprop:Generator_TableVarName="tableINVPAYDTL" msprop:Generator_RowChangedName="INVPAYDTLRowChanged" msprop:Generator_TablePropName="INVPAYDTL" msprop:Generator_RowDeletingName="INVPAYDTLRowDeleting" msprop:Generator_RowChangingName="INVPAYDTLRowChanging" msprop:Generator_RowEvHandlerName="INVPAYDTLRowChangeEventHandler" msprop:Generator_RowDeletedName="INVPAYDTLRowDeleted" msprop:Generator_RowClassName="INVPAYDTLRow" msprop:Generator_UserTableName="INVPAYDTL" msprop:Generator_RowEvArgName="INVPAYDTLRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ORNUM" msprop:Generator_ColumnVarNameInTable="columnORNUM" msprop:Generator_ColumnPropNameInRow="ORNUM" msprop:Generator_ColumnPropNameInTable="ORNUMColumn" msprop:Generator_UserColumnName="ORNUM" type="xs:decimal" />
@@ -81,7 +81,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CYRate" msprop:Generator_TableClassName="CYRateDataTable" msprop:Generator_TableVarName="tableCYRate" msprop:Generator_TablePropName="CYRate" msprop:Generator_RowDeletingName="CYRateRowDeleting" msprop:Generator_RowChangingName="CYRateRowChanging" msprop:Generator_RowEvHandlerName="CYRateRowChangeEventHandler" msprop:Generator_RowDeletedName="CYRateRowDeleted" msprop:Generator_UserTableName="CYRate" msprop:Generator_RowChangedName="CYRateRowChanged" msprop:Generator_RowEvArgName="CYRateRowChangeEvent" msprop:Generator_RowClassName="CYRateRow">
+        <xs:element name="CYRate" msprop:Generator_TableClassName="CYRateDataTable" msprop:Generator_TableVarName="tableCYRate" msprop:Generator_RowChangedName="CYRateRowChanged" msprop:Generator_TablePropName="CYRate" msprop:Generator_RowDeletingName="CYRateRowDeleting" msprop:Generator_RowChangingName="CYRateRowChanging" msprop:Generator_RowEvHandlerName="CYRateRowChangeEventHandler" msprop:Generator_RowDeletedName="CYRateRowDeleted" msprop:Generator_RowClassName="CYRateRow" msprop:Generator_UserTableName="CYRate" msprop:Generator_RowEvArgName="CYRateRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="cyr_rtecde" msprop:Generator_ColumnVarNameInTable="columncyr_rtecde" msprop:Generator_ColumnPropNameInRow="cyr_rtecde" msprop:Generator_ColumnPropNameInTable="cyr_rtecdeColumn" msprop:Generator_UserColumnName="cyr_rtecde" type="xs:string" />
@@ -98,7 +98,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Sales" msprop:Generator_TableClassName="SalesDataTable" msprop:Generator_TableVarName="tableSales" msprop:Generator_TablePropName="Sales" msprop:Generator_RowDeletingName="SalesRowDeleting" msprop:Generator_RowChangingName="SalesRowChanging" msprop:Generator_RowEvHandlerName="SalesRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesRowDeleted" msprop:Generator_UserTableName="Sales" msprop:Generator_RowChangedName="SalesRowChanged" msprop:Generator_RowEvArgName="SalesRowChangeEvent" msprop:Generator_RowClassName="SalesRow">
+        <xs:element name="Sales" msprop:Generator_TableClassName="SalesDataTable" msprop:Generator_TableVarName="tableSales" msprop:Generator_RowChangedName="SalesRowChanged" msprop:Generator_TablePropName="Sales" msprop:Generator_RowDeletingName="SalesRowDeleting" msprop:Generator_RowChangingName="SalesRowChanging" msprop:Generator_RowEvHandlerName="SalesRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesRowDeleted" msprop:Generator_RowClassName="SalesRow" msprop:Generator_UserTableName="Sales" msprop:Generator_RowEvArgName="SalesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Invdttm" msprop:Generator_ColumnVarNameInTable="columnInvdttm" msprop:Generator_ColumnPropNameInRow="Invdttm" msprop:Generator_ColumnPropNameInTable="InvdttmColumn" msprop:Generator_UserColumnName="Invdttm" type="xs:dateTime" minOccurs="0" />
@@ -117,7 +117,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Cash" msprop:Generator_TableClassName="CashDataTable" msprop:Generator_TableVarName="tableCash" msprop:Generator_TablePropName="Cash" msprop:Generator_RowDeletingName="CashRowDeleting" msprop:Generator_RowChangingName="CashRowChanging" msprop:Generator_RowEvHandlerName="CashRowChangeEventHandler" msprop:Generator_RowDeletedName="CashRowDeleted" msprop:Generator_UserTableName="Cash" msprop:Generator_RowChangedName="CashRowChanged" msprop:Generator_RowEvArgName="CashRowChangeEvent" msprop:Generator_RowClassName="CashRow">
+        <xs:element name="Cash" msprop:Generator_TableClassName="CashDataTable" msprop:Generator_TableVarName="tableCash" msprop:Generator_RowChangedName="CashRowChanged" msprop:Generator_TablePropName="Cash" msprop:Generator_RowDeletingName="CashRowDeleting" msprop:Generator_RowChangingName="CashRowChanging" msprop:Generator_RowEvHandlerName="CashRowChangeEventHandler" msprop:Generator_RowDeletedName="CashRowDeleted" msprop:Generator_RowClassName="CashRow" msprop:Generator_UserTableName="Cash" msprop:Generator_RowEvArgName="CashRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Pddte" msprop:Generator_ColumnVarNameInTable="columnPddte" msprop:Generator_ColumnPropNameInRow="Pddte" msprop:Generator_ColumnPropNameInTable="PddteColumn" msprop:Generator_UserColumnName="Pddte" type="xs:dateTime" minOccurs="0" />
@@ -135,6 +135,16 @@
               <xs:element name="CompanyCode" msprop:Generator_ColumnVarNameInTable="columnCompanyCode" msprop:Generator_ColumnPropNameInRow="CompanyCode" msprop:Generator_ColumnPropNameInTable="CompanyCodeColumn" msprop:Generator_UserColumnName="CompanyCode" type="xs:string" minOccurs="0" />
               <xs:element name="ST" msprop:Generator_ColumnVarNameInTable="columnST" msprop:Generator_ColumnPropNameInRow="ST" msprop:Generator_ColumnPropNameInTable="STColumn" msprop:Generator_UserColumnName="ST" type="xs:decimal" minOccurs="0" />
               <xs:element name="OthAmt" msprop:Generator_ColumnVarNameInTable="columnOthAmt" msprop:Generator_ColumnPropNameInRow="OthAmt" msprop:Generator_ColumnPropNameInTable="OthAmtColumn" msprop:Generator_UserColumnName="OthAmt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ADR" msprop:Generator_ColumnVarNameInTable="columnADR" msprop:Generator_ColumnPropNameInRow="ADR" msprop:Generator_ColumnPropNameInTable="ADRColumn" msprop:Generator_UserColumnName="ADR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CshAmt" msprop:Generator_ColumnVarNameInTable="columnCshAMT" msprop:Generator_ColumnPropNameInRow="CshAMT" msprop:Generator_ColumnPropNameInTable="CshAMTColumn" msprop:Generator_UserColumnName="CshAmt" type="xs:double" minOccurs="0" />
+              <xs:element name="ChkAmt" msprop:Generator_ColumnVarNameInTable="columnChkAmt" msprop:Generator_ColumnPropNameInRow="ChkAmt" msprop:Generator_ColumnPropNameInTable="ChkAmtColumn" msprop:Generator_UserColumnName="ChkAmt" type="xs:double" minOccurs="0" />
+              <xs:element name="AdrAmt" msprop:Generator_ColumnVarNameInTable="columnAdrAmt" msprop:Generator_ColumnPropNameInRow="AdrAmt" msprop:Generator_ColumnPropNameInTable="AdrAmtColumn" msprop:Generator_UserColumnName="AdrAmt" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -158,7 +168,7 @@
       <xs:field xpath="mstns:ORNUM" />
       <xs:field xpath="mstns:INVNUM" />
     </xs:unique>
-    <xs:keyref name="INVCYBCYRate" refer="dsAcctRptKey4" msprop:rel_Generator_UserChildTable="CYRate" msprop:rel_Generator_ChildPropName="GetCYRateRows" msprop:rel_Generator_UserRelationName="INVCYBCYRate" msprop:rel_Generator_ParentPropName="INVCYBRow" msprop:rel_Generator_RelationVarName="relationINVCYBCYRate" msprop:rel_Generator_UserParentTable="INVCYB">
+    <xs:keyref name="INVCYBCYRate" refer="dsAcctRptKey4" msprop:rel_Generator_UserChildTable="CYRate" msprop:rel_Generator_ChildPropName="GetCYRateRows" msprop:rel_Generator_UserRelationName="INVCYBCYRate" msprop:rel_Generator_RelationVarName="relationINVCYBCYRate" msprop:rel_Generator_UserParentTable="INVCYB" msprop:rel_Generator_ParentPropName="INVCYBRow">
       <xs:selector xpath=".//mstns:CYRate" />
       <xs:field xpath="mstns:cyr_rtecde" />
     </xs:keyref>

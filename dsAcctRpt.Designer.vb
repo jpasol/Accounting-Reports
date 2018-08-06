@@ -2789,6 +2789,14 @@ Partial Public Class dsAcctRpt
         
         Private columnOthAmt As Global.System.Data.DataColumn
         
+        Private columnADR As Global.System.Data.DataColumn
+        
+        Private columnCshAMT As Global.System.Data.DataColumn
+        
+        Private columnChkAmt As Global.System.Data.DataColumn
+        
+        Private columnAdrAmt As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -2945,6 +2953,38 @@ Partial Public Class dsAcctRpt
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ADRColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnADR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CshAMTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCshAMT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property ChkAmtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnChkAmt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AdrAmtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAdrAmt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2981,9 +3021,28 @@ Partial Public Class dsAcctRpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddCashRow(ByVal Pddte As Date, ByVal DocNo As String, ByVal ORNo As String, ByVal ChkNo As String, ByVal Payor As String, ByVal Amt As Decimal, ByVal ImpAmt As Decimal, ByVal ExpAmt As Decimal, ByVal McAmt As Decimal, ByVal SS As Decimal, ByVal AR As Decimal, ByVal SV As Decimal, ByVal CompanyCode As String, ByVal ST As Decimal, ByVal OthAmt As Decimal) As CashRow
+        Public Overloads Function AddCashRow( _
+                    ByVal Pddte As Date,  _
+                    ByVal DocNo As String,  _
+                    ByVal ORNo As String,  _
+                    ByVal ChkNo As String,  _
+                    ByVal Payor As String,  _
+                    ByVal Amt As Decimal,  _
+                    ByVal ImpAmt As Decimal,  _
+                    ByVal ExpAmt As Decimal,  _
+                    ByVal McAmt As Decimal,  _
+                    ByVal SS As Decimal,  _
+                    ByVal AR As Decimal,  _
+                    ByVal SV As Decimal,  _
+                    ByVal CompanyCode As String,  _
+                    ByVal ST As Decimal,  _
+                    ByVal OthAmt As Decimal,  _
+                    ByVal ADR As Char,  _
+                    ByVal CshAMT As Double,  _
+                    ByVal ChkAmt As Double,  _
+                    ByVal AdrAmt As Double) As CashRow
             Dim rowCashRow As CashRow = CType(Me.NewRow,CashRow)
-            Dim columnValuesArray() As Object = New Object() {Pddte, DocNo, ORNo, ChkNo, Payor, Amt, ImpAmt, ExpAmt, McAmt, SS, AR, SV, CompanyCode, ST, OthAmt}
+            Dim columnValuesArray() As Object = New Object() {Pddte, DocNo, ORNo, ChkNo, Payor, Amt, ImpAmt, ExpAmt, McAmt, SS, AR, SV, CompanyCode, ST, OthAmt, ADR, CshAMT, ChkAmt, AdrAmt}
             rowCashRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCashRow)
             Return rowCashRow
@@ -3027,6 +3086,10 @@ Partial Public Class dsAcctRpt
             Me.columnCompanyCode = MyBase.Columns("CompanyCode")
             Me.columnST = MyBase.Columns("ST")
             Me.columnOthAmt = MyBase.Columns("OthAmt")
+            Me.columnADR = MyBase.Columns("ADR")
+            Me.columnCshAMT = MyBase.Columns("CshAmt")
+            Me.columnChkAmt = MyBase.Columns("ChkAmt")
+            Me.columnAdrAmt = MyBase.Columns("AdrAmt")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3062,6 +3125,18 @@ Partial Public Class dsAcctRpt
             MyBase.Columns.Add(Me.columnST)
             Me.columnOthAmt = New Global.System.Data.DataColumn("OthAmt", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnOthAmt)
+            Me.columnADR = New Global.System.Data.DataColumn("ADR", GetType(Char), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnADR)
+            Me.columnCshAMT = New Global.System.Data.DataColumn("CshAmt", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnCshAMT.ExtendedProperties.Add("Generator_ColumnPropNameInRow", "CshAMT")
+            Me.columnCshAMT.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "CshAMTColumn")
+            Me.columnCshAMT.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnCshAMT")
+            Me.columnCshAMT.ExtendedProperties.Add("Generator_UserColumnName", "CshAmt")
+            MyBase.Columns.Add(Me.columnCshAMT)
+            Me.columnChkAmt = New Global.System.Data.DataColumn("ChkAmt", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnChkAmt)
+            Me.columnAdrAmt = New Global.System.Data.DataColumn("AdrAmt", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAdrAmt)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5367,6 +5442,66 @@ Partial Public Class dsAcctRpt
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ADR() As Char
+            Get
+                Try 
+                    Return CType(Me(Me.tableCash.ADRColumn),Char)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ADR' in table 'Cash' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCash.ADRColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CshAMT() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableCash.CshAMTColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CshAmt' in table 'Cash' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCash.CshAMTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ChkAmt() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableCash.ChkAmtColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ChkAmt' in table 'Cash' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCash.ChkAmtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property AdrAmt() As Double
+            Get
+                Try 
+                    Return CType(Me(Me.tableCash.AdrAmtColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'AdrAmt' in table 'Cash' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCash.AdrAmtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsPddteNull() As Boolean
             Return Me.IsNull(Me.tableCash.PddteColumn)
         End Function
@@ -5543,6 +5678,54 @@ Partial Public Class dsAcctRpt
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetOthAmtNull()
             Me(Me.tableCash.OthAmtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsADRNull() As Boolean
+            Return Me.IsNull(Me.tableCash.ADRColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetADRNull()
+            Me(Me.tableCash.ADRColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCshAMTNull() As Boolean
+            Return Me.IsNull(Me.tableCash.CshAMTColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCshAMTNull()
+            Me(Me.tableCash.CshAMTColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsChkAmtNull() As Boolean
+            Return Me.IsNull(Me.tableCash.ChkAmtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetChkAmtNull()
+            Me(Me.tableCash.ChkAmtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAdrAmtNull() As Boolean
+            Return Me.IsNull(Me.tableCash.AdrAmtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAdrAmtNull()
+            Me(Me.tableCash.AdrAmtColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

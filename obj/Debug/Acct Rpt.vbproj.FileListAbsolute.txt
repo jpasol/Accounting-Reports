@@ -52,7 +52,6 @@ C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\bin\Fl
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\bin\stdole.dll
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\bin\ShockwaveFlashObjects.dll
-C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.vbprojAssemblyReference.cache
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct_Rpt.frmAcctRpt.resources
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.vbproj.GenerateResource.cache
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.vbproj.CoreCompileInputs.cache

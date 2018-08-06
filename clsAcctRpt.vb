@@ -88,7 +88,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdINVCYB
                 .Connection = objConn
-                .CommandText = "SELECT distinct * FROM dbo.INVCYB INNER JOIN dbo.CYRate ON dbo.INVCYB.rtecde = dbo.CYRate.cyr_rtecde Where dbo.INVCYB.refnum=" & lngRefNum
+                .CommandText = "SELECT distinct * FROM dbo.INVCYB INNER JOIN dbo.CYRate ON dbo.INVCYB.rtecde = dbo.CYRate.cyr_rtecde and cntsze = cyr_cntsze Where dbo.INVCYB.refnum=" & lngRefNum
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()
@@ -110,7 +110,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdPayDtl
                 .Connection = objConn
-                .CommandText = "SELECT TOP 1* FROM InvPayDtl WHERE invnum=" & lngInvNum & " AND paydate <='" & dtePay & "' ORDER BY PAYdate DESC"
+                .CommandText = "SELECT TOP 1* FROM InvPayDtl WHERE invnum=" & lngInvNum & " AND paydate >='" & dtePay & "' ORDER BY PAYdate DESC"
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()
@@ -341,6 +341,45 @@ Public Class clsAcctRpt
                 daInvPayDtl.Fill(dtabInvPayDtl)
 
                 Return dtabInvPayDtl
+            End With
+        Else Return Nothing
+        End If
+    End Function
+
+    Public Function Get_InvDtl(ByVal CCRNUM As Long, ByVal RateCode As String, ByVal CNTNUM As String) As DataTable
+        Dim cmdInvPayDtl As New SqlCommand
+        Dim daInvPayDtl As New SqlDataAdapter
+        Dim dtabInvDtl As New DataTable
+
+        If Connection() = True Then
+            With cmdInvPayDtl
+                .Connection = objConn
+                .CommandText = "SELECT case when cyx.ccrnum is not null then cyx.ccrnum else dtl.ccrnum end as ccrnum,
+				                isnull(amt,0) +
+				                isnull(vatamt,0) +
+				                isnull(whfamt,0) +
+				                isnull(arramt,0)+
+				                isnull(cyx.ovzamt,0) + isnull(dtl.ovzamt,0)+
+				                isnull(cyx.dgramt,0) + isnull(dtl.dgramt,0)+
+				                isnull(arrvat,0) -
+				                isnull(arrtax,0) -
+				                isnull(wtax,0) as ExportCharges,
+				                isnull(wghamt,0) wghamt  
+
+                                From ccrdtl dtl full Join ccrcyx cyx on dtl.ccrnum = cyx.ccrnum 
+
+                                Where 
+                                      (dtl.ccrnum =" & CCRNUM & "and Chargetyp = '" & RateCode & "' and dtl.cntnum = '" & CNTNUM & "') Or 
+                                      (cyx.ccrnum = " & CCRNUM & " and cyx.cntnum = '" & CNTNUM & "')"
+
+                .CommandType = CommandType.Text
+
+                .ExecuteNonQuery()
+
+                daInvPayDtl.SelectCommand = cmdInvPayDtl
+                daInvPayDtl.Fill(dtabInvDtl)
+
+                Return dtabInvDtl
             End With
         Else Return Nothing
         End If

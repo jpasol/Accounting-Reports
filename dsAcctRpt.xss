@@ -11,7 +11,7 @@
     <Shape ID="DesignTable:INVPAYDTL" ZOrder="5" X="730" Y="70" Height="162" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
     <Shape ID="DesignTable:CYRate" ZOrder="4" X="510" Y="70" Height="238" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
     <Shape ID="DesignTable:Sales" ZOrder="3" X="950" Y="70" Height="257" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
-    <Shape ID="DesignTable:Cash" ZOrder="2" X="1170" Y="70" Height="257" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="86" />
+    <Shape ID="DesignTable:Cash" ZOrder="2" X="1170" Y="70" Height="257" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="253" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:INVCYBCYRate" ZOrder="1" LineWidth="11">
