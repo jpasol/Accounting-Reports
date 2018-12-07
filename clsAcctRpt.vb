@@ -332,7 +332,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdInvPayDtl
                 .Connection = objConn
-                .CommandText = "SELECT distinct dtl.*, CompanyCode FROM InvPayDtl dtl inner join INVICT ict on dtl.invnum = ict.invnum WHERE ornum =" & lngORNum
+                .CommandText = "SELECT distinct dtl.*, CompanyCode FROM InvPayDtl dtl inner join INVICT ict on dtl.invnum = ict.invnum WHERE Companycode is not null and ornum =" & lngORNum
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()
