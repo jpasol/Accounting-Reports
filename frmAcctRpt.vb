@@ -242,8 +242,8 @@ Public Class frmAcctRpt
                 Dim lngCCRPay As Long = 0
 
                 Do While lngCCRPay < dtabCCRPay.Rows.Count
-                    If clsAcctRpt.Chk_CAN_UG(dtabCCRPay.Rows(lngCCRPay)("ccrtyp"), dtabCCRPay.Rows(lngCCRPay)("refnum")) = False Then
-                        If dtabCCRPay.Rows(lngCCRPay)("ccrtyp") = 1 Then
+                    'If clsAcctRpt.Chk_CAN_UG(dtabCCRPay.Rows(lngCCRPay)("ccrtyp"), dtabCCRPay.Rows(lngCCRPay)("refnum")) = False Then
+                    If dtabCCRPay.Rows(lngCCRPay)("ccrtyp") = 1 Then
                             Dim intCCRCyx As Integer = 0
 
                             'Export
@@ -492,7 +492,7 @@ Public Class frmAcctRpt
                             dtabCCRPay.Rows(lngCCRPay)("cusnam"), charADR, dblSPLTotal, dblSPLCsh, dblSPLChk, dblSPLAdr, dblCIM, dblCEX, dblST, dblRFR, dblEQP, dblSS, 0, dblSV, dtabCCRDtl.Rows(0)("CompanyCode"))
 
                         End If
-                    End If
+                    'End If
                     lngCCRPay += 1
                 Loop
             End If

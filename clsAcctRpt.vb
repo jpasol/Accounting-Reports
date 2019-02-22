@@ -38,7 +38,7 @@ Public Class clsAcctRpt
         Dim dtabINVICT As New dsAcctRpt.INVICTDataTable
         Dim sqlQuery As String = "Select distinct a.* From INVICT a " &
         "Inner join invcyb b on a.refnum = b.refnum " &
-        "Where a.invdttm >='" & dteStart & "' And a.invdttm <='" & dteEnd & "' "
+        "Where a.invdttm >='" & dteStart & "' And a.invdttm <='" & dteEnd & "' and status <> 'CAN'"
 
         If compCode <> "ALL" Then
             sqlQuery &= "and b.CompanyCode = '" & compCode & "' "
@@ -131,7 +131,7 @@ Public Class clsAcctRpt
 
         Dim sqlQuery As String = "SELECT distinct a.* FROM CCRPay a " &
             "INNER JOIN CCRCyx b on a.refnum=b.refnum " &
-            "WHERE a.sysdttm >='" & dteStart & "' And a.sysdttm <='" & dteEnd & "' "
+            "WHERE a.sysdttm >='" & dteStart & "' And a.sysdttm <='" & dteEnd & "' " & " and (b.status <> 'CAN' and b.guarntycde <> 'Y')"
 
         If compCode <> "ALL" Then
             sqlQuery &= " AND b.CompanyCode='" & compCode & "' "
@@ -140,7 +140,7 @@ Public Class clsAcctRpt
 
         sqlQuery &= "SELECT distinct a.* FROM CCRPay a " &
             "INNER JOIN CCRDtl c on a.refnum=c.refnum " &
-            "WHERE a.sysdttm >='" & dteStart & "' And a.sysdttm <='" & dteEnd & "' "
+            "WHERE a.sysdttm >='" & dteStart & "' And a.sysdttm <='" & dteEnd & "' " & " and (c.status <> 'CAN' and c.guarntycde <> 'Y')"
 
         If compCode <> "ALL" Then
             sqlQuery &= " AND c.CompanyCode='" & compCode & "' "
@@ -172,7 +172,7 @@ Public Class clsAcctRpt
         Dim dtabCYMPay As New DataTable
         Dim sqlQuery As String = "SELECT distinct a.* FROM CYMPay a " &
             "INNER JOIN CYMGps b on a.refnum=b.refnum " &
-            "WHERE a.sysdttm >='" & dteStart & "' And sysdttm <='" & dteEnd & "' "
+            "WHERE a.sysdttm >='" & dteStart & "' And sysdttm <='" & dteEnd & "' and (b.status <> 'CAN' and b.gtycde = ' ')"
 
         If compCode <> "ALL" Then
             sqlQuery &= " AND b.CompanyCode='" & compCode & "'"
@@ -229,7 +229,7 @@ Public Class clsAcctRpt
                 .Connection = objConn
                 If intCCRTyp = 1 Then
                     'Export
-                    .CommandText = "SELECT distinct * FROM CCRCyx WHERE (status = 'CAN' Or guarntycde = 'Y') And refnum = " & lngRefNum
+                    .CommandText = "SELECT distinct * FROM CCRCyx WHERE (status = 'CAN' or guarntycde = 'Y') and refnum = " & lngRefNum
                 ElseIf intCCRTyp = 2 Then
                     'Special Services
                     .CommandText = "SELECT distinct * FROM CCRDtl WHERE (status = 'CAN' Or guarntycde = 'Y') And refnum = " & lngRefNum
@@ -246,6 +246,7 @@ Public Class clsAcctRpt
 
                 daCanUg.SelectCommand = cmdCanUg
                 daCanUg.Fill(dtabCanUg)
+
 
                 intCount = dtabCanUg.Rows.Count
 
@@ -266,7 +267,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdCCRCyx
                 .Connection = objConn
-                .CommandText = "SELECT distinct * FROM CCRCyx WHERE refnum =" & lngRefNum
+                .CommandText = "SELECT distinct * FROM CCRCyx WHERE refnum =" & lngRefNum & " and (status <> 'CAN' and guarntycde <> 'Y')"
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()
@@ -288,7 +289,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdCCRDtl
                 .Connection = objConn
-                .CommandText = "SELECT distinct CCRDTL.*, cyr_biltyp FROM CCRDtl inner join CYRate on chargetyp = cyr_rtecde WHERE refnum =" & lngRefNum
+                .CommandText = "SELECT distinct CCRDTL.*, cyr_biltyp FROM CCRDtl inner join CYRate on chargetyp = cyr_rtecde WHERE refnum =" & lngRefNum & " and (status <> 'CAN' and guarntycde <> 'Y')"
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()
@@ -310,7 +311,7 @@ Public Class clsAcctRpt
         If Connection() = True Then
             With cmdCYMGps
                 .Connection = objConn
-                .CommandText = "SELECT distinct * FROM CYMGps WHERE refnum =" & lngRefNum
+                .CommandText = "SELECT distinct * FROM CYMGps WHERE refnum =" & lngRefNum & " and (status <> 'CAN' and gtycde = ' ')"
                 .CommandType = CommandType.Text
 
                 .ExecuteNonQuery()

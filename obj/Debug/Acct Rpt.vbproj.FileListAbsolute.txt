@@ -59,3 +59,4 @@ C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\De
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.exe
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.xml
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.pdb
+C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.vbprojAssemblyReference.cache

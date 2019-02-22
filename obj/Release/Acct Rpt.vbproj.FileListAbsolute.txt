@@ -26,3 +26,4 @@ C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Re
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Release\Acct Rpt.vbproj.CopyComplete
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Release\Acct Rpt.exe
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Release\Acct Rpt.xml
+C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Release\Acct Rpt.vbprojAssemblyReference.cache
