@@ -135,6 +135,12 @@
     <Compile Include="frmAcctRpt.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ORN.vb">
+      <DependentUpon>ORN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="rptCash.vb">
       <DependentUpon>rptCash.rpt</DependentUpon>
       <SubType>Component</SubType>
@@ -154,6 +160,10 @@
     </Content>
     <EmbeddedResource Include="frmAcctRpt.resx">
       <DependentUpon>frmAcctRpt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ORN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ORN.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptCash.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -196,7 +206,7 @@
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_StartDate="2018/6/29" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_ConfigurationName="Release" />
+      <UserProperties BuildVersion_ConfigurationName="Release" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_StartDate="2018/6/29" BuildVersion_UseUniversalClock="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
