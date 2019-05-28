@@ -59,4 +59,34 @@ C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\De
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.exe
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.xml
 C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.pdb
-C:\Users\JPasol\Desktop\Repository\August Save\Billing\Accounting-Reports\obj\Debug\Acct Rpt.vbprojAssemblyReference.cache
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\Acct Rpt.exe.config
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\Acct Rpt.exe
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\Acct Rpt.pdb
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\Acct Rpt.xml
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportSource.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.Shared.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.Windows.Forms.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\FlashControlV71.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\stdole.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\bin\ShockwaveFlashObjects.dll
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.vbprojAssemblyReference.cache
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct_Rpt.frmAcctRpt.resources
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.vbproj.GenerateResource.cache
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.vbproj.CoreCompileInputs.cache
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.vbproj.CopyComplete
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.exe
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.xml
+C:\Users\dgrade\Documents\GitHub\Accounting-Reports\obj\Debug\Acct Rpt.pdb

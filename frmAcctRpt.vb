@@ -92,7 +92,7 @@ Public Class frmAcctRpt
         'cmbRptType
         '
         Me.cmbRptType.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbRptType.Items.AddRange(New Object() {"[Select Report]", "Cash Receipt", "Sales Register"})
+        Me.cmbRptType.Items.AddRange(New Object() {"[Select Report]", "Cash Receipt", "Sales Register", "ADR"})
         Me.cmbRptType.Location = New System.Drawing.Point(16, 32)
         Me.cmbRptType.Name = "cmbRptType"
         Me.cmbRptType.Size = New System.Drawing.Size(144, 24)
@@ -199,12 +199,15 @@ Public Class frmAcctRpt
     Private dtabSales As dsAcctRpt.SalesDataTable
     'Cash Register
     Private dtabCCRPay As DataTable
+    Private dtabCCRPay1 As DataTable
     Private dtabCCRCyx As DataTable
     Private dtabCCRDtl As DataTable
     Private dtabCYMPay As DataTable
+    Private dtabCYMPay1 As DataTable
     Private dtabCYMGps As DataTable
     Private dtabInvPayHdr As DataTable
     Private dtabInvPayDtl As DataTable
+    Private dtabInvPayDtl1 As DataTable
     Private dtabInvDtl As DataTable
     Private dtabCash As dsAcctRpt.CashDataTable
 
@@ -242,8 +245,8 @@ Public Class frmAcctRpt
                 Dim lngCCRPay As Long = 0
 
                 Do While lngCCRPay < dtabCCRPay.Rows.Count
-                    'If clsAcctRpt.Chk_CAN_UG(dtabCCRPay.Rows(lngCCRPay)("ccrtyp"), dtabCCRPay.Rows(lngCCRPay)("refnum")) = False Then
-                    If dtabCCRPay.Rows(lngCCRPay)("ccrtyp") = 1 Then
+                    If clsAcctRpt.Chk_CAN_UG(dtabCCRPay.Rows(lngCCRPay)("ccrtyp"), dtabCCRPay.Rows(lngCCRPay)("refnum")) = False Then
+                        If dtabCCRPay.Rows(lngCCRPay)("ccrtyp") = 1 Then
                             Dim intCCRCyx As Integer = 0
 
                             'Export
@@ -492,7 +495,7 @@ Public Class frmAcctRpt
                             dtabCCRPay.Rows(lngCCRPay)("cusnam"), charADR, dblSPLTotal, dblSPLCsh, dblSPLChk, dblSPLAdr, dblCIM, dblCEX, dblST, dblRFR, dblEQP, dblSS, 0, dblSV, dtabCCRDtl.Rows(0)("CompanyCode"))
 
                         End If
-                    'End If
+                    End If
                     lngCCRPay += 1
                 Loop
             End If
@@ -1084,10 +1087,655 @@ Public Class frmAcctRpt
             rptSales.SetParameterValue("StartDte", dtpStart.Value)
             rptSales.SetParameterValue("EndDte", dtpEnd.Value)
             crvAcctRpt.ReportSource = rptSales
+
+#End Region
+#Region "ORN"
+            '''''''''''''CASH REGISTER''''''''''''''''
+        ElseIf Trim(cmbRptType.Text) = "ADR" Then
+#Region "Export and Special Services"
+            Dim lngExpAmt As Double = 0
+            Dim dblWghAmt As Double
+            Dim lngSpcAmt As Double = 0
+            Dim dblExpTotal As Double = 0
+            Dim dblExpPay As Double = 0
+            Dim dblExpCsh As Double = 0
+            Dim dblExpChk As Double = 0
+            Dim dblExpAdr As Double = 0
+            Dim charADR As Char = ""
+            Dim ADRno As String
+            dtabCash = New dsAcctRpt.CashDataTable
+
+            'Export and Special Services
+            dtabCCRPay1 = New DataTable
+            dtabCCRPay1 = clsAcctRpt.Get_CCRPay1(dtpStart.Text & " 00:00:00 AM", dtpEnd.Text & " 11:58:59 PM", cmbCompCode.Text.Trim)
+
+            If dtabCCRPay1.Rows.Count > 0 Then
+                Dim lngCCRPay1 As Long = 0
+
+                Do While lngCCRPay1 < dtabCCRPay1.Rows.Count
+                    If clsAcctRpt.Chk_CAN_UG(dtabCCRPay1.Rows(lngCCRPay1)("ccrtyp"), dtabCCRPay1.Rows(lngCCRPay1)("refnum")) = False Then
+                        If dtabCCRPay1.Rows(lngCCRPay1)("ccrtyp") = 1 Then
+                            Dim intCCRCyx As Integer = 0
+
+                            'Export
+                            dtabCCRCyx = clsAcctRpt.Get_CCRCyx(dtabCCRPay1.Rows(lngCCRPay1)("refnum"))
+                            If dtabCCRCyx.Rows.Count > 0 Then
+                                strChkNo = ""
+                                'Get Cheque Nos.
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno1").ToString) <> "" Then
+                                    strChkNo = Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno1").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno2").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno2").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno3").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno3").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno4").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno4").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno5").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno5").ToString)
+                                End If
+
+                                strDocNo = ""
+                                'Get CCR No. series
+                                If dtabCCRCyx.Rows.Count = 1 Then
+                                    strDocNo = "CCMR " & dtabCCRCyx.Rows(0)("ccrnum").ToString
+                                ElseIf Trim(dtabCCRCyx.Rows(0)("ccrnum")) = Trim(dtabCCRCyx.Rows(dtabCCRCyx.Rows.Count - 1)("ccrnum")) Then
+                                    strDocNo = "CCMR " & Trim(dtabCCRCyx.Rows(0)("ccrnum").ToString)
+                                Else
+                                    strDocNo = "CCMR " & Trim(dtabCCRCyx.Rows(0)("ccrnum").ToString) & " - " & Trim(dtabCCRCyx.Rows(dtabCCRCyx.Rows.Count - 1)("ccrnum").ToString)
+                                End If
+
+
+                                'Get Export Amount
+                                lngExpAmt = 0
+                                dblExpCsh = 0
+                                dblExpChk = 0
+                                dblWghAmt = 0
+                                charADR = ""
+                                Do While intCCRCyx < dtabCCRCyx.Rows.Count
+                                    lngExpAmt = lngExpAmt +
+                                                dtabCCRCyx.Rows(intCCRCyx)("whfamt") +
+                                                dtabCCRCyx.Rows(intCCRCyx)("arramt") +
+                                                dtabCCRCyx.Rows(intCCRCyx)("ovzamt") +
+                                                dtabCCRCyx.Rows(intCCRCyx)("dgramt") +
+                                                dtabCCRCyx.Rows(intCCRCyx)("arrvat") -
+                                                dtabCCRCyx.Rows(intCCRCyx)("arrtax")
+
+                                    dblWghAmt += dtabCCRCyx.Rows(intCCRCyx)("wghamt") 'Sum Weighing
+                                    intCCRCyx += 1
+                                Loop
+                            End If
+                            'Get Amount Paid Total
+                            dblExpAdr = dtabCCRPay1.Rows(lngCCRPay1)("adramt")
+                            dblExpCsh = dtabCCRPay1.Rows(lngCCRPay1)("cshamt")
+
+                            dblExpChk = dtabCCRPay1.Rows(lngCCRPay1)("chkamt1") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt2") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt3") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt4") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt5")
+
+                            dblExpTotal = dblExpCsh + dblExpChk
+
+
+                            'Check ADR
+                            If dtabCCRPay1.Rows(lngCCRPay1)("adramt") > 0 Then charADR = "*"
+
+                            'Add cash data
+
+                            'PRNH 08102017 - Retrieve Exporter if Cusnam is blank
+
+                            Dim cusNameExp As String = Trim(dtabCCRPay1.Rows(lngCCRPay1)("cusnam"))
+                            If cusNameExp = "" Then
+                                cusNameExp = dtabCCRCyx.Rows(0)("exprtr")
+                            End If
+
+                            On Error Resume Next
+                            With dtabCCRPay1
+                                ADRno = ""
+                                Dim ADR1 As String = ZeroVoid(.Rows(lngCCRPay1)("adrnum"))
+                                Dim ADR2 As String = ZeroVoid(.Rows(lngCCRPay1)("adrnum2"))
+                                Dim ADR3 As String = ZeroVoid(.Rows(lngCCRPay1)("adrnum3"))
+
+
+                                If Len(ADR1) > 0 Then ADRno &= ADR1
+                                If Len(ADR2) > 0 Then ADRno &= IIf(Len(ADR1) > 0, " / ", "") & ADR2
+                                If Len(ADR3) > 0 Then ADRno &= IIf(Len(ADR2) > 0, " / ", "") & ADR3
+                            End With
+                            On Error GoTo 0
+
+                            'Add_CashData(dtabCCRPay.Rows(lngCCRPay)("sysdttm"), _
+                            '             strDocNo, "", Trim(strChkNo), _
+                            '             dtabCCRPay.Rows(lngCCRPay)("cusnam"), _
+                            '             lngExpAmt, 0, lngExpAmt, 0, 0, 0, 0)
+                            Add_CashData(dtabCCRPay1.Rows(lngCCRPay1)("sysdttm"),
+                                        strDocNo, ADRno, Trim(strChkNo),
+                                        cusNameExp, charADR, dblExpTotal, dblExpCsh, dblExpChk, dblExpAdr, 0, lngExpAmt, 0, 0, dblWghAmt, 0, 0, 0, dtabCCRCyx.Rows(0)("CompanyCode"))
+
+
+                        Else 'Special Services
+                            Dim dblSPLTotal As Double = 0
+                            Dim dblSPLCsh As Double = 0
+                            Dim dblSPLChk As Double = 0
+                            Dim dblSPLAdr As Double = 0
+                            Dim intCCRCys As Integer = 0
+                            Dim dblCIM As Double = 0
+                            Dim dblCEX As Double = 0
+                            Dim dblST As Double = 0
+                            Dim dblRFR As Double = 0
+                            Dim dblEQP As Double = 0
+                            Dim dblSS As Double = 0
+                            Dim dblSV As Double = 0
+                            Dim ctr As Integer = 0
+
+                            dtabCCRDtl = clsAcctRpt.Get_CCRDtl(dtabCCRPay1.Rows(lngCCRPay1)("refnum"))
+                            'If dtabCCRPay.Rows(lngCCRPay)("refnum") = 107491 Then Stop
+
+                            If dtabCCRDtl.Rows.Count > 0 Then
+
+                                strChkNo = ""
+                                'Get Cheque Nos.
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno1").ToString) <> "" Then
+                                    strChkNo = Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno1").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno2").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno2").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno3").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno3").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno4").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno4").ToString)
+                                End If
+                                If Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno5").ToString) <> "" Then
+                                    strChkNo += "," & Trim(dtabCCRPay1.Rows(lngCCRPay1)("chkno5").ToString)
+                                End If
+
+                                strDocNo = ""
+                                'Get CCR No. series
+                                If dtabCCRDtl.Rows.Count = 1 Then
+                                    strDocNo = "CCMR " & dtabCCRDtl.Rows(0)("ccrnum").ToString
+                                ElseIf Trim(dtabCCRDtl.Rows(0)("ccrnum")) = Trim(dtabCCRDtl.Rows(dtabCCRDtl.Rows.Count - 1)("ccrnum")) Then
+                                    strDocNo = "CCMR " & Trim(dtabCCRDtl.Rows(0)("ccrnum").ToString)
+                                Else
+                                    strDocNo = "CCMR " & Trim(dtabCCRDtl.Rows(0)("ccrnum").ToString) & " - " & Trim(dtabCCRDtl.Rows(dtabCCRDtl.Rows.Count - 1)("ccrnum").ToString)
+                                End If
+
+                                'Get Special Services Amount
+                                lngSpcAmt = 0
+                                charADR = ""
+                                Do While intCCRCys < dtabCCRDtl.Rows.Count
+                                    lngSpcAmt = dtabCCRDtl.Rows(intCCRCys)("amt") +
+                                                dtabCCRDtl.Rows(intCCRCys)("vatamt") +
+                                                dtabCCRDtl.Rows(intCCRCys)("ovzamt") +
+                                                dtabCCRDtl.Rows(intCCRCys)("dgramt") -
+                                                dtabCCRDtl.Rows(intCCRCys)("wtax")
+
+                                    'Add cash data 'Jaspher by Bill Type Type
+                                    Select Case dtabCCRDtl.Rows(intCCRCys)("cyr_biltyp").ToString
+                                        Case "CB" 'Cargo Billing IMP/EsXP
+                                            If InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "IM") > 0 Then
+                                                dblCIM += lngSpcAmt
+                                            ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "EX") > 0 Then
+                                                dblCEX += lngSpcAmt
+                                            Else
+                                                dblCIM += lngSpcAmt
+                                            End If
+                                        Case "ST" 'Storage
+                                            dblST += lngSpcAmt
+                                        Case "MC" 'Miscellaneous Charges
+                                            If InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "RF") > 0 Then 'Reefer
+                                                dblRFR += lngSpcAmt
+                                            ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "V") = 1 Then 'Vessel Billing
+                                                dblSV += lngSpcAmt
+                                            Else
+                                                dblEQP += lngSpcAmt
+                                            End If
+                                        Case "SS" 'Stripping/Stuffing
+                                            dblSS += lngSpcAmt
+                                        Case "VB" 'Vessel Billing
+                                            dblSV += lngSpcAmt
+                                        Case Else 'Check in Chargetype
+                                            If InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "CB") = 1 Then 'Cargo Billing IMP/EXP
+                                                If InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "IM") > 0 Then
+                                                    dblCIM += lngSpcAmt
+                                                ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "EX") > 0 Then
+                                                    dblCEX += lngSpcAmt
+                                                Else
+                                                    dblCIM += lngSpcAmt
+                                                End If
+                                            ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "STRIP") = 3 Then 'Stripping / Stuffing
+                                                dblSS += lngSpcAmt
+                                            ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "ST") = 1 Then 'Storage
+                                                dblST += lngSpcAmt
+                                            ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "V") = 1 Then 'Vessel Billing
+                                                dblSV += lngSpcAmt
+                                            ElseIf InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "MC") = 1 Then 'Miscellaneous Charges
+                                                If InStr(dtabCCRDtl.Rows(intCCRCys)("chargetyp").ToString, "RF") > 0 Then 'Reefer
+                                                    dblRFR += lngSpcAmt
+                                                Else
+                                                    dblEQP += lngSpcAmt
+                                                End If
+                                            End If
+
+                                    End Select
+                                    intCCRCys += 1
+                                Loop
+                            End If
+
+
+                            'Get Amount Paid in Cash and Cheque
+                            dblSPLAdr = dtabCCRPay1.Rows(lngCCRPay1)("adramt")
+
+                            dblSPLCsh = dtabCCRPay1.Rows(lngCCRPay1)("cshamt")
+
+                            dblSPLChk = dtabCCRPay1.Rows(lngCCRPay1)("chkamt1") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt2") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt3") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt4") +
+                                         dtabCCRPay1.Rows(lngCCRPay1)("chkamt5")
+
+                            dblSPLTotal = dblSPLCsh + dblSPLChk
+
+                            'Check ADR
+                            If dtabCCRPay1.Rows(lngCCRPay1)("adramt") > 0 Then charADR = "*"
+
+                            On Error Resume Next
+                            With dtabCCRPay1
+                                ADRno = ""
+                                Dim ADR1 As String = ZeroVoid(.Rows(lngCCRPay1)("adrnum"))
+                                Dim ADR2 As String = ZeroVoid(.Rows(lngCCRPay1)("adrnum2"))
+                                Dim ADR3 As String = ZeroVoid(.Rows(lngCCRPay1)("adrnum3"))
+
+
+                                If Len(ADR1) > 0 Then ADRno &= ADR1
+                                If Len(ADR2) > 0 Then ADRno &= IIf(Len(ADR1) > 0, " / ", "") & ADR2
+                                If Len(ADR3) > 0 Then ADRno &= IIf(Len(ADR2) > 0, " / ", "") & ADR3
+                            End With
+                            On Error GoTo 0
+
+                            'add Cash Data
+                            Add_CashData(dtabCCRPay1.Rows(lngCCRPay1)("sysdttm"),
+                            strDocNo, ADRno, Trim(strChkNo),
+                            dtabCCRPay1.Rows(lngCCRPay1)("cusnam"), charADR, dblSPLTotal, dblSPLCsh, dblSPLChk, dblSPLAdr, dblCIM, dblCEX, dblST, dblRFR, dblEQP, dblSS, 0, dblSV, dtabCCRDtl.Rows(0)("CompanyCode"))
+
+                        End If
+                    End If
+                    lngCCRPay1 += 1
+                Loop
+            End If
+#End Region
+#Region "Import"
+            'Import
+            dtabCYMPay1 = New DataTable
+            dtabCYMPay1 = clsAcctRpt.Get_CYMPay1(dtpStart.Text & " 00:00:00 AM", dtpEnd.Text & " 11:58:59 PM", cmbCompCode.Text.Trim)
+
+            If dtabCYMPay1.Rows.Count > 0 Then
+                Dim lngCYMAmt As Double = 0
+                Dim dblCYMSTO As Double = 0
+                Dim dblCYMRFR As Double = 0
+                Dim lngCYMPay1 As Long = 0
+                Dim dblCYMTotal As Double = 0
+                Dim dblCYMCsh As Double = 0
+                Dim dblCYMChk As Double = 0
+                Dim dblCYMAdr As Double = 0
+
+                Do While lngCYMPay1 < dtabCYMPay1.Rows.Count
+                    If clsAcctRpt.Chk_CAN_UG(3, dtabCYMPay1.Rows(lngCYMPay1)("refnum")) = False Then
+                        Dim intCCRCym As Integer = 0
+
+                        dtabCYMGps = clsAcctRpt.Get_CYMGps(dtabCYMPay1.Rows(lngCYMPay1)("refnum"))
+                        If dtabCYMGps.Rows.Count > 0 Then
+                            strChkNo = ""
+                            'Get Cheque Nos.
+                            If Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno1").ToString) <> "0" Then
+                                strChkNo = Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno1").ToString)
+                            End If
+                            If Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno2").ToString) <> "0" Then
+                                strChkNo += "," & Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno2").ToString)
+                            End If
+                            If Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno3").ToString) <> "0" Then
+                                strChkNo += "," & Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno3").ToString)
+                            End If
+                            If Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno4").ToString) <> "0" Then
+                                strChkNo += "," & Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno4").ToString)
+                            End If
+                            If Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno5").ToString) <> "0" Then
+                                strChkNo += "," & Trim(dtabCYMPay1.Rows(lngCYMPay1)("chkno5").ToString)
+                            End If
+                            strDocNo = ""
+                            'Get Gps No. series
+                            If dtabCYMGps.Rows.Count = 1 Then
+                                strDocNo = "CCR " & dtabCYMGps.Rows(0)("gpsnum").ToString
+                            ElseIf Trim(dtabCYMGps.Rows(0)("gpsnum")) = Trim(dtabCYMGps.Rows(dtabCYMGps.Rows.Count - 1)("gpsnum")) Then
+                                strDocNo = "CCR " & Trim(dtabCYMGps.Rows(0)("gpsnum").ToString)
+                            Else
+                                strDocNo = "CCR " & Trim(dtabCYMGps.Rows(0)("gpsnum").ToString) & " - " & Trim(dtabCYMGps.Rows(dtabCYMGps.Rows.Count - 1)("gpsnum").ToString)
+                            End If
+                            'Get Import Amount
+                            lngCYMAmt = 0
+                            dblCYMSTO = 0
+                            dblCYMRFR = 0
+
+                            charADR = ""
+                            Do While intCCRCym < dtabCYMGps.Rows.Count
+                                lngCYMAmt = lngCYMAmt +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("udstoamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("udstoamt")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("udstovat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("udstovat")) -
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("udstotax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("udstotax")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("arramt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("arramt")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("whfamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("whfamt")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("wghamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("wghamt")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("stovat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("stovat")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("arrvat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("arrvat")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("wghvat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("wghvat")) +
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("rfrvat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("rfrvat")) -
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("stotax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("stotax")) -
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("arrtax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("arrtax")) -
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("wghtax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("wghtax")) -
+                                        IIf(dtabCYMGps.Rows(intCCRCym)("rfrtax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("rfrtax"))
+
+                                dblCYMSTO = dblCYMSTO + IIf(dtabCYMGps.Rows(intCCRCym)("stoamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("stoamt"))
+                                dblCYMRFR = dblCYMRFR + IIf(dtabCYMGps.Rows(intCCRCym)("rframt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("rframt"))
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("dgramt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("dgramt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("udstoamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("udstoamt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("udstovat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("udstovat")) - _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("udstotax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("udstotax")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("ovzamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("ovzamt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("stoamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("stoamt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("arramt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("arramt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("whfamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("whfamt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("wghamt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("wghamt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("rframt") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("rframt")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("stovat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("stovat")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("arrvat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("arrvat")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("wghvat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("wghvat")) + _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("rfrvat") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("rfrvat")) - _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("stotax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("stotax")) - _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("arrtax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("arrtax")) - _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("wghtax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("wghtax")) - _
+                                'IIf(dtabCYMGps.Rows(intCCRCym)("rfrtax") Is DBNull.Value, 0, dtabCYMGps.Rows(intCCRCym)("rfrtax"))
+                                intCCRCym += 1
+                            Loop
+                            'Get Amount paid in Cash and Cheque
+                            dblCYMAdr = dtabCYMPay1.Rows(lngCYMPay1)("adramt")
+                            dblCYMCsh = dtabCYMPay1.Rows(lngCYMPay1)("cshamt")
+
+                            dblCYMChk = dtabCYMPay1.Rows(lngCYMPay1)("chkamt1") +
+                                         dtabCYMPay1.Rows(lngCYMPay1)("chkamt2") +
+                                         dtabCYMPay1.Rows(lngCYMPay1)("chkamt3") +
+                                         dtabCYMPay1.Rows(lngCYMPay1)("chkamt4") +
+                                         dtabCYMPay1.Rows(lngCYMPay1)("chkamt5")
+                            dblCYMTotal = dblCYMCsh + dblCYMChk
+                            'Check ADR
+                            If dtabCYMPay1.Rows(lngCYMPay1)("adramt") > 0 Then charADR = "*"
+                            'Add cash data
+
+                            'PRNH 08102017 - Retrieve Consignee if Cusnam is blank
+                            Dim custImp As String = dtabCYMPay1.Rows(lngCYMPay1)("cusnam")
+                            If custImp = "" Then
+                                custImp = dtabCYMGps.Rows(0)("cnsgne")
+                            End If
+
+                            On Error Resume Next
+                            With dtabCYMPay1
+                                ADRno = ""
+                                Dim ADR1 As String = ZeroVoid(.Rows(lngCYMPay1)("adrnum"))
+                                Dim ADR2 As String = ZeroVoid(.Rows(lngCYMPay1)("adrnum2"))
+                                Dim ADR3 As String = ZeroVoid(.Rows(lngCYMPay1)("adrnum3"))
+
+
+                                If Len(ADR1) > 0 Then ADRno &= ADR1
+                                If Len(ADR2) > 0 Then ADRno &= IIf(Len(ADR1) > 0, " / ", "") & ADR2
+                                If Len(ADR3) > 0 Then ADRno &= IIf(Len(ADR2) > 0, " / ", "") & ADR3
+                            End With
+                            On Error GoTo 0
+
+                            'Add_CashData(dtabCYMPay.Rows(lngCYMPay)("sysdttm"), _
+                            '             strDocNo, "", Trim(strChkNo), _
+                            '             dtabCYMPay.Rows(lngCYMPay)("cusnam"), lngCYMAmt, lngCYMAmt, 0, 0, 0, 0, 0)
+
+                            Add_CashData(dtabCYMPay1.Rows(lngCYMPay1)("sysdttm"),
+                                         strDocNo, ADRno, Trim(strChkNo),
+                                         custImp, charADR, dblCYMTotal, dblCYMCsh, dblCYMChk, dblCYMAdr, lngCYMAmt, 0, dblCYMSTO, dblCYMRFR, 0, 0, 0, 0, dtabCYMGps.Rows(0)("CompanyCode"))
+                        End If
+                    End If
+                    lngCYMPay1 += 1
+                Loop
+            End If
+#End Region
+#Region "Invoice"
+            'Invoice
+            dtabInvPayHdr = New DataTable
+            dtabInvPayHdr = clsAcctRpt.Get_InvPayHdr(dtpStart.Text & " 00:00:00 AM", dtpEnd.Text & " 11:58:59 PM")
+            If dtabInvPayHdr.Rows.Count > 0 Then
+                Dim lngInvAmt As Double = 0
+                Dim rowInvPayHdr As Integer = 0
+
+                Do While rowInvPayHdr < dtabInvPayHdr.Rows.Count
+                    strChkNo = ""
+                    'Get Cheque Nos.
+                    If Trim(dtabInvPayHdr.Rows(rowInvPayHdr)("checkno1").ToString) <> "0" Then
+                        strChkNo = Trim(dtabInvPayHdr.Rows(rowInvPayHdr)("checkno1").ToString)
+                    End If
+                    If Trim(dtabInvPayHdr.Rows(rowInvPayHdr)("checkno2").ToString) <> "0" Then
+                        strChkNo += "," & Trim(dtabInvPayHdr.Rows(rowInvPayHdr)("checkno2").ToString)
+                    End If
+
+                    Dim intInvPayDtl1 As Integer = 0
+                    Dim strCusName As String = ""
+
+                    'If dtabInvPayHdr.Rows(rowInvPayHdr)("ornum") = 1579 Then Stop
+
+                    dtabInvPayDtl1 = clsAcctRpt.Get_InvPayDtl1(dtabInvPayHdr.Rows(rowInvPayHdr)("ornum"))
+
+                    If dtabInvPayDtl1.Rows.Count > 0 Then
+                        Do While intInvPayDtl1 < dtabInvPayDtl1.Rows.Count
+                            'If clsAcctRpt.Chk_CAN_UG(4, dtabInvPayHdr.Rows(rowInvPayHdr)("ornum")) = False Then
+                            If clsAcctRpt.Chk_CAN_UG(4, dtabInvPayDtl1.Rows(intInvPayDtl1)("invnum")) = False Then
+                                'Get Invoice Amount
+                                lngInvAmt = 0
+                                lngInvAmt = IIf(dtabInvPayDtl1.Rows(intInvPayDtl1)("payamt") Is DBNull.Value, 0, dtabInvPayDtl1.Rows(intInvPayDtl1)("payamt"))
+                                'Get Invoice Number
+                                strDocNo = ""
+                                strDocNo = Trim(dtabInvPayDtl1.Rows(intInvPayDtl1)("invnum").ToString)
+                                'Get Customer Name
+                                strCusName = ""
+                                strCusName = clsAcctRpt.Get_CustomerName(dtabInvPayHdr.Rows(rowInvPayHdr)("cuscde"))
+
+                                'Check if account is an AR(Accounts Receivablle)
+                                If clsAcctRpt.Is_Invoice_AR(strDocNo, dtpStart.Text & " 00:00:00 AM", dtpEnd.Text & " 11:58:59 PM") = True Then
+                                    'Add cash data
+                                    Add_CashData(dtabInvPayHdr.Rows(rowInvPayHdr)("ORDate"),
+                                                 Trim("INV " & strDocNo), dtabInvPayHdr.Rows(rowInvPayHdr)("ORNum"), Trim(strChkNo),
+                                                 strCusName, charADR, lngInvAmt, 0, 0, 0, 0, 0, 0, 0, 0, 0, lngInvAmt, 0, dtabInvPayDtl1.Rows(intInvPayDtl1)("CompanyCode"))
+                                Else
+                                    'Get invoice data
+                                    Dim lngInvRefNo As Long = 0
+                                    lngInvRefNo = clsAcctRpt.Get_InvRefNum(strDocNo)
+
+                                    'Charges
+                                    Dim dblVC, dblVC1 As Double  'Vessel Charges
+                                    Dim dblCIM, dblCIM1 As Double 'Import Cargoes
+                                    Dim dblCEX, dblCEX1 As Double 'Export Cargoes
+                                    Dim dblST, dblST1 As Double 'Storage
+                                    Dim dblMC, dblMC1 As Double 'Reefer
+                                    Dim dblSS, dblSS1 As Double 'Stripping/Stuffing
+                                    Dim dblOth, dblOth1 As Double 'Other Charges
+                                    'Invoice Amount
+                                    Dim dblInvAmt As Double = 0
+                                    'Invoice PayDate
+
+                                    'Initialize charges
+                                    dblVC = 0 : dblVC1 = 0
+                                    dblCIM = 0 : dblCIM1 = 0
+                                    dblCEX = 0 : dblCEX1 = 0
+                                    dblST = 0 : dblST1 = 0
+                                    dblMC = 0 : dblMC1 = 0
+                                    dblSS = 0 : dblSS1 = 0
+                                    dblOth = 0 : dblOth1 = 0
+
+                                    'Get the invoice amount on a per Billing Type basis------------
+                                    dtabINVCYB = New DataTable
+                                    dtabINVCYB = clsAcctRpt.Get_INVCYB(lngInvRefNo)
+
+
+                                    If dtabINVCYB.Rows.Count > 0 Then
+                                        Dim intCybCtr As Integer = 0
+
+                                        Do While intCybCtr < dtabINVCYB.Rows.Count
+                                            Dim CCRNUM As String = dtabINVCYB.Rows(intCybCtr)("rtedsc").ToString
+                                            Dim CNTNUM As String = CCRNUM
+
+                                            Select Case Trim(dtabINVCYB.Rows(intCybCtr)("cyr_biltyp").ToString)
+                                                Case "CB" 'Cargoes
+                                                    If InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "EX") > 0 Then 'Export Cargoes
+
+                                                        CCRNUM = Mid(CCRNUM, 'Get CCRNUM
+                                                                 InStr(CCRNUM, "R#") + 2, 'Start Position at 2 Characters from R
+                                                                 InStr(CCRNUM, " ") - (InStr(CCRNUM, "R#") + 2)) 'Get Length by finding the Space ' ' and then Substracting the Starting Position
+
+                                                        CNTNUM = Mid(CNTNUM, 'Get CCRNUM
+                                                                 InStr(CNTNUM, " ") + 1, 'Start Position at 2 Characters from Space
+                                                                 InStr(CNTNUM, "-") - (InStr(CNTNUM, " ") + 1)) 'Get Length by finding the Dash '-' and then Substracting the Starting Position
+
+                                                        dtabInvDtl = clsAcctRpt.Get_InvDtl(CCRNUM, dtabINVCYB.Rows(intCybCtr)("rtecde"), CNTNUM)
+
+                                                        dblCEX += CDbl(dtabInvDtl.Rows(0)("ExportCharges").ToString)
+                                                        dblOth += CDbl(dtabInvDtl.Rows(0)("wghamt").ToString)
+
+                                                        'ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "IM") > 0 Then 'Import Cargoes
+                                                    Else
+                                                        dblCIM += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                    End If
+                                                Case "ST" 'Storage
+                                                    dblST += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                Case "MC" 'Miscellaneous Charges
+                                                    If InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "RF") > 0 Then 'Reefer
+                                                        dblMC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                    ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "V") = 1 Then 'Vessel Charge
+                                                        dblVC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                    Else
+                                                        dblOth += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString) 'Equipment Rental
+                                                    End If
+                                                Case "SS" 'Stripping/Stuffing
+                                                    dblSS += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                Case "VB" 'Vessel Charges
+                                                    dblVC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                Case Else 'Other Charges
+                                                    If InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "CB") = 1 Then 'Cargo Billing IMP/EXP
+                                                        If InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "IM") > 0 Then
+                                                            dblCIM += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                            'ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "EX") > 0 Then
+                                                        Else
+                                                            dblCEX += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                        End If
+                                                    ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "STRIP") = 1 Then 'Stripping/Stuffing
+                                                        dblSS += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                    ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "ST") = 1 Then 'Storage
+                                                        dblST += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                    ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "MC") = 1 Then 'Miscellaneous Charges
+                                                        If InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "RF") > 0 Then 'Reefer
+                                                            dblMC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                        Else
+                                                            dblOth += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString) 'Equipment Rental
+                                                        End If
+                                                    ElseIf InStr(Trim(dtabINVCYB.Rows(intCybCtr)("rtecde").ToString), "V") = 1 Then 'Vessel Billing
+                                                        dblVC += CDbl(dtabINVCYB.Rows(intCybCtr)("invamt").ToString)
+                                                    End If
+                                            End Select
+                                            intCybCtr += 1
+                                        Loop
+                                    End If
+                                    '--------------------------------------------------------------
+
+                                    Dim dblPayAmt As Double = 0
+
+                                    dblPayAmt = lngInvAmt
+
+                                    'Recompute charges
+                                    If dblVC > 0 Then 'Vessel Charges
+                                        If dblVC >= dblPayAmt Then
+                                            dblVC1 = dblPayAmt
+                                        Else
+                                            dblVC1 = dblVC
+                                        End If
+                                    End If
+                                    If dblCEX > 0 Then 'Export Cargoes
+                                        If (dblVC + dblCEX) >= dblPayAmt Then
+                                            dblCEX1 = dblPayAmt - (dblVC1)
+                                        Else
+                                            dblCEX1 = dblCEX
+                                        End If
+                                    End If
+                                    If dblCIM > 0 Then 'Import Cargoes
+                                        If (dblVC + dblCEX + dblCIM) >= dblPayAmt Then
+                                            dblCIM1 = dblPayAmt - (dblVC1 + dblCEX1)
+                                        Else
+                                            dblCIM1 = dblCIM
+                                        End If
+                                    End If
+                                    If dblST > 0 Then 'Storage
+                                        If (dblVC + dblCEX + dblCIM + dblST) >= dblPayAmt Then
+                                            dblST1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1)
+                                        Else
+                                            dblST1 = dblST
+                                        End If
+                                    End If
+                                    If dblMC > 0 Then 'Reefer
+                                        If (dblVC + dblCEX + dblCIM + dblST + dblMC) >= dblPayAmt Then
+                                            dblMC1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblST1)
+                                        Else
+                                            dblMC1 = dblMC
+                                        End If
+                                    End If
+                                    If dblSS > 0 Then 'Stripping/Stuffing
+                                        If (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS) >= dblPayAmt Then
+                                            dblSS1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblST1 + dblMC1)
+                                        Else
+                                            dblSS1 = dblSS
+                                        End If
+                                    End If
+                                    If dblOth > 0 Then 'Others
+                                        If (dblVC + dblCEX + dblCIM + dblST + dblMC + dblSS + dblOth) >= dblPayAmt Then
+                                            dblOth1 = dblPayAmt - (dblVC1 + dblCEX1 + dblCIM1 + dblST1 + dblMC1 + dblSS1)
+                                        Else
+                                            dblOth1 = dblOth
+                                        End If
+                                    End If
+
+                                    'Add cash data
+                                    Add_CashData(dtabInvPayHdr.Rows(rowInvPayHdr)("ORDate"),
+                                                 Trim("INV " & strDocNo), dtabInvPayHdr.Rows(rowInvPayHdr)("ORNum"), Trim(strChkNo),
+                                                 strCusName, charADR, lngInvAmt, 0, 0, 0, dblCIM1, dblCEX1, dblST1, dblMC1, dblOth1, dblSS1, 0, dblVC1,
+                                                 dtabINVCYB.Rows(0)("CompanyCode"))
+                                End If
+                            End If
+                            intInvPayDtl1 += 1
+                        Loop
+                    End If
+                    rowInvPayHdr += 1
+                Loop
+            End If
+
+            clsAcctRpt.DisConnect()
+            clsAcctRpt = Nothing
+
+            'Call Display Report
+            Dim ORN As New ORN
+
+            ORN.SetDataSource(dataTable:=dtabCash)
+            ORN.SetParameterValue("StartDte", dtpStart.Value)
+            ORN.SetParameterValue("EndDte", dtpEnd.Value)
+            crvAcctRpt.ReportSource = ORN
         Else
             Cursor = Cursors.Default
             MsgBox("Please select a valid report type!", MsgBoxStyle.Exclamation, "Display Restriction")
         End If
+#End Region
 #End Region
         Cursor = Cursors.Default
     End Sub
